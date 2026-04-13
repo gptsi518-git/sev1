@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface PdfLightboxProps {
   isOpen: boolean;
@@ -9,7 +9,8 @@ interface PdfLightboxProps {
 export default function PdfLightbox({ isOpen, src, onClose }: PdfLightboxProps) {
   const [pageImages, setPageImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const abortRef = useRef(false);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -27,83 +28,86 @@ export default function PdfLightbox({ isOpen, src, onClose }: PdfLightboxProps) 
   }, [isOpen]);
 
   useEffect(() => {
-    let cancelled = false;
+    abortRef.current = false;
 
-    const loadDocument = async () => {
-      if (!isOpen || !src) {
-        setPageImages([]);
-        setLoading(false);
-        setError(null);
-        return;
-      }
+    if (!isOpen || !src) {
+      setPageImages([]);
+      setLoading(false);
+      setErrorMsg(null);
+      return;
+    }
 
+    if (src.endsWith(".png")) {
+      setPageImages([src]);
+      setLoading(false);
+      setErrorMsg(null);
+      return;
+    }
+
+    const renderPdf = async () => {
       setLoading(true);
-      setError(null);
-
-      if (src.endsWith(".png")) {
-        setPageImages([src]);
-        setLoading(false);
-        return;
-      }
+      setErrorMsg(null);
+      setPageImages([]);
 
       try {
         const pdfjs = await import("pdfjs-dist");
-        pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-          "pdfjs-dist/build/pdf.worker.min.mjs",
-          import.meta.url,
-        ).toString();
 
-        const res = await fetch(src);
-        if (!res.ok) {
-          throw new Error("Не удалось загрузить PDF");
-        }
+        // Use the bundled worker via static import URL
+        const workerUrl = await import("pdfjs-dist/build/pdf.worker.min.mjs?url");
+        pdfjs.GlobalWorkerOptions.workerSrc = workerUrl.default;
 
-        const bytes = new Uint8Array(await res.arrayBuffer());
-        const pdf = await pdfjs.getDocument({ data: bytes }).promise;
+        const response = await fetch(src);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const arrayBuffer = await response.arrayBuffer();
+
+        const pdf = await pdfjs.getDocument({
+          data: new Uint8Array(arrayBuffer),
+        }).promise;
+
         const images: string[] = [];
 
-        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
-          const page = await pdf.getPage(pageNumber);
-          const viewport = page.getViewport({ scale: 1.6 });
+        for (let i = 1; i <= pdf.numPages; i++) {
+          if (abortRef.current) return;
+
+          const page = await pdf.getPage(i);
+          const scale = 2;
+          const viewport = page.getViewport({ scale });
+
           const canvas = document.createElement("canvas");
-          const context = canvas.getContext("2d");
-
-          if (!context) {
-            throw new Error("Не удалось создать canvas");
-          }
-
           canvas.width = viewport.width;
           canvas.height = viewport.height;
+          const ctx = canvas.getContext("2d");
+          if (!ctx) throw new Error("Canvas context failed");
 
-          await page.render({ canvas, canvasContext: context, viewport }).promise;
+          await page.render({ canvas, canvasContext: ctx, viewport }).promise;
           images.push(canvas.toDataURL("image/png"));
         }
 
-        if (!cancelled) {
+        if (!abortRef.current) {
           setPageImages(images);
         }
-      } catch {
-        if (!cancelled) {
-          setError("Chrome блокирует встроенный просмотр PDF, поэтому я отрисовал документ внутри страницы. Если конкретный файл всё равно не рисуется, пришлите его ещё раз.");
-          setPageImages([]);
+      } catch (err) {
+        console.error("PDF render error:", err);
+        if (!abortRef.current) {
+          setErrorMsg("Не удалось отрисовать PDF. Попробуйте открыть файл напрямую.");
         }
       } finally {
-        if (!cancelled) {
+        if (!abortRef.current) {
           setLoading(false);
         }
       }
     };
 
-    loadDocument();
+    renderPdf();
 
     return () => {
-      cancelled = true;
+      abortRef.current = true;
     };
   }, [isOpen, src]);
 
   if (!isOpen) return null;
 
-  const isImageDoc = src.endsWith(".png");
+  const isPng = src.endsWith(".png");
 
   return (
     <div className="doc-lightbox open" onClick={onClose}>
@@ -112,40 +116,50 @@ export default function PdfLightbox({ isOpen, src, onClose }: PdfLightboxProps) 
         onClick={(e) => e.stopPropagation()}
         style={{
           padding: 16,
-          maxWidth: isImageDoc ? 600 : 980,
-          height: isImageDoc ? "auto" : "85vh",
+          maxWidth: isPng ? 600 : 980,
+          height: isPng ? "auto" : "85vh",
           overflowY: "auto",
         }}
       >
         <div className="doc-lightbox-close" onClick={onClose}>&#x2715;</div>
 
-        {loading ? (
+        {loading && (
           <div style={{ padding: "48px 24px", textAlign: "center", color: "var(--ink-muted)" }}>
             Загружаю документ…
           </div>
-        ) : null}
+        )}
 
-        {error ? (
-          <div style={{ padding: "24px", color: "var(--ink-muted)" }}>{error}</div>
-        ) : null}
+        {errorMsg && (
+          <div style={{ padding: "24px", textAlign: "center" }}>
+            <p style={{ color: "var(--ink-muted)", marginBottom: 12 }}>{errorMsg}</p>
+            <a
+              href={src}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--p-blue)", textDecoration: "underline" }}
+            >
+              Скачать PDF
+            </a>
+          </div>
+        )}
 
-        {!loading && !error ? (
+        {!loading && !errorMsg && pageImages.length > 0 && (
           <div style={{ display: "grid", gap: 16 }}>
-            {pageImages.map((image, index) => (
+            {pageImages.map((dataUrl, idx) => (
               <img
-                key={`${src}-${index}`}
-                src={image}
-                alt={`Документ, страница ${index + 1}`}
+                key={idx}
+                src={dataUrl}
+                alt={`Страница ${idx + 1}`}
                 style={{
                   width: "100%",
-                  borderRadius: 12,
+                  borderRadius: 8,
                   border: "1px solid var(--p-border)",
                   background: "white",
                 }}
               />
             ))}
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );
