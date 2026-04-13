@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const eduData = [
   { year: "2026", title: "Agent Skills для L&D", org: "Мандрик, Казаков и роботы", label: "Agent Skills для L&D — 2026", cert: null },
@@ -20,6 +20,19 @@ export default function ExperienceSection({ onOpenPdf }: ExperienceSectionProps)
   const [activeIndex, setActiveIndex] = useState(0);
 
   const activeCert = eduData[activeIndex].cert;
+  const [isLandscape, setIsLandscape] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    setIsLandscape(false);
+  }, [activeCert]);
+
+  const handleImgLoad = () => {
+    const img = imgRef.current;
+    if (img) {
+      setIsLandscape(img.naturalWidth > img.naturalHeight);
+    }
+  };
 
   const handleRowClick = (i: number) => {
     setActiveIndex(i);
@@ -38,12 +51,21 @@ export default function ExperienceSection({ onOpenPdf }: ExperienceSectionProps)
         <div className="esplit">
           <div className="esplit-scan">
             {activeCert ? (
-              <div className="esplit-ph" style={{ cursor: "pointer" }} onClick={() => onOpenPdf(activeCert)}>
+              <div
+                className={`esplit-ph ${isLandscape ? "esplit-ph--landscape" : "esplit-ph--portrait"}`}
+                style={{ cursor: "pointer" }}
+                onClick={() => onOpenPdf(activeCert)}
+              >
                 <img
+                  ref={imgRef}
                   src={activeCert}
                   alt={eduData[activeIndex].label}
+                  onLoad={handleImgLoad}
                   style={{
                     width: "100%",
+                    flex: "1 1 auto",
+                    minHeight: 0,
+                    objectFit: "contain",
                     borderRadius: 8,
                     border: "1px solid var(--p-border)",
                     background: "white",
