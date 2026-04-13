@@ -11,22 +11,14 @@ export default function TrustSection() {
     <section className="trust">
       <div className="wrap">
         {items.map((it, i) => (
-          <div key={i}>
-            {i > 0 && <div className="trust-divider" style={{ display: "inline-block" }} />}
-          </div>
-        ))}
-        {items.flatMap((it, i) => {
-          const els = [
-            <div className="trust-item" key={`item-${i}`}>
+          <span key={i} style={{ display: "contents" }}>
+            <div className="trust-item">
               <div className="trust-num">{it.num}</div>
               <div className="trust-label">{it.label}</div>
-            </div>,
-          ];
-          if (i < items.length - 1) {
-            els.push(<div className="trust-divider" key={`div-${i}`} />);
-          }
-          return els;
-        })}
+            </div>
+            {i < items.length - 1 && <div className="trust-divider" />}
+          </span>
+        ))}
         <div className="trust-divider" />
         <div className="trust-logos">
           {logos.map((l) => (
