@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import portfolioCss from "../styles/portfolio.css?url";
 
 function NotFoundComponent() {
   return (
@@ -31,11 +32,11 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Елена Сидоренко — Learning Architect" },
+      { name: "description", content: "От стратегии обучения до коучинга руководителей — программы, которые меняют поведение и дают бизнес-результат." },
+      { name: "author", content: "Елена Сидоренко" },
+      { property: "og:title", content: "Елена Сидоренко — Learning Architect" },
+      { property: "og:description", content: "От стратегии обучения до коучинга руководителей — программы, которые меняют поведение и дают бизнес-результат." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
