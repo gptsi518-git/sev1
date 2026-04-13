@@ -20,7 +20,7 @@ export default function ContactSection() {
             <h2>Обсудим вашу&nbsp;задачу</h2>
             <p className="sub">Расскажите, что нужно — предложу формат и оценю сроки. Обычно отвечаю в течение дня.<br />Работаю с компаниями и индивидуально с руководителями.</p>
             <div className="c-item"><strong>Телефон</strong> 8-926-258-29-05</div>
-            <div className="c-item"><strong>Email</strong> sev1coaching@gmail.com</div>
+            <div className="c-item"><strong>Email</strong>{" sev1coaching@gmail.com"}</div>
             <div className="c-item"><a href="#" className="card-link">Написать в LinkedIn →</a></div>
             <div style={{ marginTop: 24 }}>
               <div style={{ width: 220, height: 220, borderRadius: "50%", background: "var(--blue-pale)", border: "2px solid var(--p-border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: "var(--ink-muted)" }}>Фото Елены</div>
