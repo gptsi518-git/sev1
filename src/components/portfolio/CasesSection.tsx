@@ -1,5 +1,6 @@
 interface CasesSectionProps {
   onOpenLb: (caption: string) => void;
+  onOpenPdf: (src: string) => void;
 }
 
 function CaseThumb({ label, onClick, green }: { label: string; onClick: () => void; green?: boolean }) {
@@ -22,7 +23,7 @@ function CaseThumb({ label, onClick, green }: { label: string; onClick: () => vo
   );
 }
 
-export default function CasesSection({ onOpenLb }: CasesSectionProps) {
+export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps) {
   return (
     <section className="cases" id="cases">
       <div className="arc" style={{ width: 320, height: 320, bottom: -100, right: -60, border: "1.5px solid #1F4E79", opacity: 0.14 }} />
@@ -47,7 +48,7 @@ export default function CasesSection({ onOpenLb }: CasesSectionProps) {
               <CaseThumb label="Работа в группах" onClick={() => onOpenLb("Работа в группах")} />
               <CaseThumb label="Ведущая тренинга" onClick={() => onOpenLb("Ведущая тренинга")} />
               <CaseThumb label="Дискуссия" onClick={() => onOpenLb("Дискуссия")} />
-              <CaseThumb label="Благодарность" onClick={() => onOpenLb("Благодарность")} green />
+              <CaseThumb label="Благодарность" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.pdf")} green />
             </div>
           </div>
           <div className="case" style={{ borderLeft: "3px solid var(--p-green)" }}>
@@ -71,7 +72,7 @@ export default function CasesSection({ onOpenLb }: CasesSectionProps) {
               <CaseThumb label="Развивающая ОС" onClick={() => onOpenLb("Развивающая ОС")} />
               <CaseThumb label="Чек-лист" onClick={() => onOpenLb("Чек-лист")} />
               <CaseThumb label="Благодарность" onClick={() => onOpenLb("Благодарность")} />
-              <CaseThumb label="Грамота" onClick={() => onOpenLb("Грамота")} green />
+              <CaseThumb label="Грамота" onClick={() => onOpenPdf("/docs/rzd-gramota-2024.pdf")} green />
             </div>
           </div>
           <div className="case has-logo">

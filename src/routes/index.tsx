@@ -12,6 +12,7 @@ import FooterSection from "../components/portfolio/FooterSection";
 import StickyMobileCta from "../components/portfolio/StickyMobileCta";
 import Lightbox from "../components/portfolio/Lightbox";
 import DocLightbox from "../components/portfolio/DocLightbox";
+import PdfLightbox from "../components/portfolio/PdfLightbox";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -27,10 +28,17 @@ function Index() {
   const [lbOpen, setLbOpen] = useState(false);
   const [lbCaption, setLbCaption] = useState("");
   const [docLbOpen, setDocLbOpen] = useState(false);
+  const [pdfSrc, setPdfSrc] = useState("");
+  const [pdfOpen, setPdfOpen] = useState(false);
 
   const openLb = (caption: string) => {
     setLbCaption(caption);
     setLbOpen(true);
+  };
+
+  const openPdf = (src: string) => {
+    setPdfSrc(src);
+    setPdfOpen(true);
   };
 
   return (
@@ -39,14 +47,15 @@ function Index() {
       <HeroSection />
       <TrustSection />
       <TasksSection onOpenLb={openLb} onOpenDocLb={() => setDocLbOpen(true)} />
-      <CasesSection onOpenLb={openLb} />
-      <ExperienceSection />
+      <CasesSection onOpenLb={openLb} onOpenPdf={openPdf} />
+      <ExperienceSection onOpenPdf={openPdf} />
       <MagnetsSection />
       <ContactSection />
       <FooterSection />
       <StickyMobileCta />
       <Lightbox isOpen={lbOpen} caption={lbCaption} onClose={() => setLbOpen(false)} />
       <DocLightbox isOpen={docLbOpen} onClose={() => setDocLbOpen(false)} />
+      <PdfLightbox isOpen={pdfOpen} src={pdfSrc} onClose={() => setPdfOpen(false)} />
     </>
   );
 }

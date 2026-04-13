@@ -1,19 +1,31 @@
 import { useState } from "react";
 
 const eduData = [
-  { year: "2026", title: "Agent Skills для L&D", org: "Мандрик, Казаков и роботы", label: "Agent Skills для L&D — 2026" },
-  { year: "2026", title: "Практикумы по вайбкодингу", org: "LXD Hero", label: "Практикумы по вайбкодингу — 2026" },
-  { year: "2024", title: "Нейрогерой образования", org: "LXD Hero · Нейрогуру программы", label: "Нейрогерой образования — 2024 · Отзыв на сайте LXD Hero →" },
-  { year: "2022", title: "Проектирование образовательного опыта", org: "LXD Hero", label: "Проектирование обр. опыта — 2022" },
-  { year: "2020", title: "Интерактивный вебинар. Как создать и провести", org: "ГК «Институт Тренинга — АРБ Про»", label: "Интерактивный вебинар. Как создать и провести — 2020" },
-  { year: "2018", title: "Школа фасилитации", org: "Марина Курдова", label: "Школа фасилитации — 2018" },
-  { year: "2011", title: "Искусство и Наука коучинга", org: "МАК / Erickson College International", label: "Искусство и Наука коучинга — 2011" },
-  { year: "2009", title: "Корпоративный тренер: мастер-курс", org: "ГК «Институт Тренинга — АРБ Про»", label: "Корпоративный тренер — 2009" },
-  { year: "2004", title: "Психология образования", org: "МГППУ, Москва", label: "Психология образования — 1999–2004" },
+  { year: "2026", title: "Agent Skills для L&D", org: "Мандрик, Казаков и роботы", label: "Agent Skills для L&D — 2026", cert: null },
+  { year: "2026", title: "Практикумы по вайбкодингу", org: "LXD Hero", label: "Практикумы по вайбкодингу — 2026", cert: "/docs/cert-vibecoding-2026.pdf" },
+  { year: "2024", title: "Нейрогерой образования", org: "LXD Hero · Нейрогуру программы", label: "Нейрогерой образования — 2024 · Отзыв на сайте LXD Hero →", cert: null },
+  { year: "2022", title: "Проектирование образовательного опыта", org: "LXD Hero", label: "Проектирование обр. опыта — 2022", cert: "/docs/cert-lxd-mentoring-2022.png" },
+  { year: "2020", title: "Интерактивный вебинар. Как создать и провести", org: "ГК «Институт Тренинга — АРБ Про»", label: "Интерактивный вебинар. Как создать и провести — 2020", cert: "/docs/cert-webinar-2020.pdf" },
+  { year: "2018", title: "Школа фасилитации", org: "Марина Курдова", label: "Школа фасилитации — 2018", cert: "/docs/cert-facilitation-2018.pdf" },
+  { year: "2011", title: "Искусство и Наука коучинга", org: "МАК / Erickson College International", label: "Искусство и Наука коучинга — 2011", cert: "/docs/cert-coaching-2011.pdf" },
+  { year: "2009", title: "Корпоративный тренер: мастер-курс", org: "ГК «Институт Тренинга — АРБ Про»", label: "Корпоративный тренер — 2009", cert: "/docs/cert-trainer-2009.pdf" },
+  { year: "2004", title: "Психология образования", org: "МГППУ, Москва", label: "Психология образования — 1999–2004", cert: "/docs/cert-psychology-2004.pdf" },
 ];
 
-export default function ExperienceSection() {
+interface ExperienceSectionProps {
+  onOpenPdf: (src: string) => void;
+}
+
+export default function ExperienceSection({ onOpenPdf }: ExperienceSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleRowClick = (i: number) => {
+    setActiveIndex(i);
+    const cert = eduData[i].cert;
+    if (cert) {
+      onOpenPdf(cert);
+    }
+  };
 
   return (
     <section className="experience" id="experience">
@@ -43,14 +55,15 @@ export default function ExperienceSection() {
               <div
                 key={i}
                 className={`erow${i === activeIndex ? " active" : ""}`}
-                onClick={() => setActiveIndex(i)}
+                onClick={() => handleRowClick(i)}
+                style={{ cursor: edu.cert ? "pointer" : "default" }}
               >
                 <div className="er-yr">{edu.year}</div>
                 <div className="er-body">
                   <div className="er-t">{edu.title}</div>
                   <div className="er-o">{edu.org}</div>
                 </div>
-                <div className="er-arrow">→</div>
+                <div className="er-arrow">{edu.cert ? "📄" : "→"}</div>
               </div>
             ))}
           </div>
