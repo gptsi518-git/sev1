@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface PdfLightboxProps {
   isOpen: boolean;
@@ -7,26 +7,38 @@ interface PdfLightboxProps {
 }
 
 export default function PdfLightbox({ isOpen, src, onClose }: PdfLightboxProps) {
+  const [blobUrl, setBlobUrl] = useState<string | null>(null);
+
   useEffect(() => {
-    if (!isOpen || !src) return;
+    if (!isOpen || !src) {
+      setBlobUrl(null);
+      return;
+    }
 
-    if (src.endsWith(".png")) return; // show in lightbox
+    if (src.endsWith(".png")) {
+      setBlobUrl(src);
+      return;
+    }
 
-    // For PDFs — open in new tab via blob to avoid cross-origin blocking
-    const openPdf = async () => {
+    let revoke = "";
+    const load = async () => {
       try {
         const res = await fetch(src);
         if (!res.ok) throw new Error("fetch failed");
         const blob = await res.blob();
         const url = URL.createObjectURL(blob);
-        window.open(url, "_blank");
+        revoke = url;
+        setBlobUrl(url);
       } catch {
-        window.open(src, "_blank");
+        setBlobUrl(src);
       }
-      onClose();
     };
-    openPdf();
-  }, [isOpen, src, onClose]);
+    load();
+
+    return () => {
+      if (revoke) URL.revokeObjectURL(revoke);
+    };
+  }, [isOpen, src]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -35,23 +47,31 @@ export default function PdfLightbox({ isOpen, src, onClose }: PdfLightboxProps) 
   }, [onClose]);
 
   useEffect(() => {
-    const show = isOpen && src.endsWith(".png");
-    document.body.style.overflow = show ? "hidden" : "";
+    document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [isOpen, src]);
+  }, [isOpen]);
 
-  // Only render lightbox overlay for images (PNG)
-  if (!isOpen || !src.endsWith(".png")) return null;
+  if (!isOpen || !blobUrl) return null;
+
+  const isPng = src.endsWith(".png");
 
   return (
     <div className="doc-lightbox open" onClick={onClose}>
       <div
         className="doc-lightbox-inner"
         onClick={(e) => e.stopPropagation()}
-        style={{ padding: 16, maxWidth: 600 }}
+        style={{ padding: isPng ? 16 : 0, maxWidth: isPng ? 600 : 900, height: isPng ? "auto" : "85vh" }}
       >
         <div className="doc-lightbox-close" onClick={onClose}>&#x2715;</div>
-        <img src={src} alt="Сертификат" style={{ width: "100%", borderRadius: 12 }} />
+        {isPng ? (
+          <img src={blobUrl} alt="Сертификат" style={{ width: "100%", borderRadius: 12 }} />
+        ) : (
+          <iframe
+            src={blobUrl}
+            title="Документ"
+            style={{ width: "100%", height: "100%", border: "none", borderRadius: 12 }}
+          />
+        )}
       </div>
     </div>
   );
