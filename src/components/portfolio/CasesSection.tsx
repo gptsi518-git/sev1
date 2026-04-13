@@ -50,7 +50,7 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <CaseThumb label="Работа в группах" preview="/images/rzd-training-laptops.jpg" onClick={() => onOpenLb("Работа в группах", "/images/rzd-training-laptops.jpg")} />
               <CaseThumb label="Ведущая тренинга" preview="/images/rzd-training-presenter.jpg" onClick={() => onOpenLb("Ведущая тренинга", "/images/rzd-training-presenter.jpg")} />
               <CaseThumb label="Дискуссия" preview="/images/rzd-training-discussion.jpg" onClick={() => onOpenLb("Дискуссия", "/images/rzd-training-discussion.jpg")} />
-              <CaseThumb label="Благодарность" preview="/docs/rzd-blagodarnost-2022.png" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.png")} green />
+
             </div>
           </div>
           <div className="case" style={{ borderLeft: "3px solid var(--p-green)" }}>
@@ -74,6 +74,7 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <CaseThumb label="Развивающая ОС" onClick={() => onOpenLb("Развивающая ОС")} />
               <CaseThumb label="Чек-лист" onClick={() => onOpenLb("Чек-лист")} />
               <CaseThumb label="Благодарность" onClick={() => onOpenLb("Благодарность")} />
+              <CaseThumb label="Благодарность РЖД" preview="/docs/rzd-blagodarnost-2022.png" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.png")} green />
               <CaseThumb label="Грамота" onClick={() => onOpenPdf("/docs/rzd-gramota-2024.png")} green />
             </div>
           </div>
