@@ -75,7 +75,7 @@ export default function PdfLightbox({ isOpen, src, onClose }: PdfLightboxProps) 
           canvas.width = viewport.width;
           canvas.height = viewport.height;
 
-          await page.render({ canvasContext: context, viewport }).promise;
+          await page.render({ canvas, canvasContext: context, viewport }).promise;
           images.push(canvas.toDataURL("image/png"));
         }
 
