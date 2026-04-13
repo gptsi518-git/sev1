@@ -48,7 +48,7 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <CaseThumb label="Работа в группах" onClick={() => onOpenLb("Работа в группах")} />
               <CaseThumb label="Ведущая тренинга" onClick={() => onOpenLb("Ведущая тренинга")} />
               <CaseThumb label="Дискуссия" onClick={() => onOpenLb("Дискуссия")} />
-              <CaseThumb label="Благодарность" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.pdf")} green />
+              <CaseThumb label="Благодарность" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.png")} green />
             </div>
           </div>
           <div className="case" style={{ borderLeft: "3px solid var(--p-green)" }}>
@@ -72,7 +72,7 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <CaseThumb label="Развивающая ОС" onClick={() => onOpenLb("Развивающая ОС")} />
               <CaseThumb label="Чек-лист" onClick={() => onOpenLb("Чек-лист")} />
               <CaseThumb label="Благодарность" onClick={() => onOpenLb("Благодарность")} />
-              <CaseThumb label="Грамота" onClick={() => onOpenPdf("/docs/rzd-gramota-2024.pdf")} green />
+              <CaseThumb label="Грамота" onClick={() => onOpenPdf("/docs/rzd-gramota-2024.png")} green />
             </div>
           </div>
           <div className="case has-logo">
