@@ -329,7 +329,7 @@ img { display: block; max-width: 100%; }
 .esplit-ph .sp-l.short { width: 55%; }
 .esplit-ph .sp-st { width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid var(--p-blue); opacity: .15; margin-top: auto; }
 .esplit-ph .sp-label { font-size: 16px; color: var(--p-green); margin-top: 10px; text-align: center; line-height: 1.4; font-weight: 500; }
-.esplit-list { display: flex; flex-direction: column; gap: 4px; padding-left: 80px; }
+.esplit-list { display: flex; flex-direction: column; gap: 4px; padding-left: 40px; }
 .erow {
   display: flex; align-items: center; gap: 14px; padding: 14px 16px 14px 32px;
   border-radius: 8px; cursor: pointer; transition: all .15s; border: 1px solid transparent;
