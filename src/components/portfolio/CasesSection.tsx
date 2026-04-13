@@ -3,10 +3,12 @@ interface CasesSectionProps {
   onOpenPdf: (src: string) => void;
 }
 
-function CaseThumb({ label, onClick, green }: { label: string; onClick: () => void; green?: boolean }) {
+function CaseThumb({ label, onClick, green, preview }: { label: string; onClick: () => void; green?: boolean; preview?: string }) {
   return (
     <div className="case-thumb" onClick={onClick} style={green ? { borderColor: "var(--p-green)" } : undefined}>
-      {green ? (
+      {preview ? (
+        <img src={preview} alt={label} style={{ width: "100%", height: 48, objectFit: "cover", borderRadius: 4 }} />
+      ) : green ? (
         <svg className="ct-icon" viewBox="0 0 24 24" fill="none" stroke="#0D6B3F" strokeWidth="1.5">
           <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
           <path d="M14 2v6h6" />
@@ -44,11 +46,11 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <span className="pill">9,9 / 10</span>
             </div>
             <div className="case-gallery">
-              <CaseThumb label="Работа у флипчарта" onClick={() => onOpenLb("Работа у флипчарта", "/images/rzd-training-flipchart.jpg")} />
-              <CaseThumb label="Работа в группах" onClick={() => onOpenLb("Работа в группах", "/images/rzd-training-laptops.jpg")} />
-              <CaseThumb label="Ведущая тренинга" onClick={() => onOpenLb("Ведущая тренинга", "/images/rzd-training-presenter.jpg")} />
-              <CaseThumb label="Дискуссия" onClick={() => onOpenLb("Дискуссия", "/images/rzd-training-discussion.jpg")} />
-              <CaseThumb label="Благодарность" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.png")} green />
+              <CaseThumb label="Работа у флипчарта" preview="/images/rzd-training-flipchart.jpg" onClick={() => onOpenLb("Работа у флипчарта", "/images/rzd-training-flipchart.jpg")} />
+              <CaseThumb label="Работа в группах" preview="/images/rzd-training-laptops.jpg" onClick={() => onOpenLb("Работа в группах", "/images/rzd-training-laptops.jpg")} />
+              <CaseThumb label="Ведущая тренинга" preview="/images/rzd-training-presenter.jpg" onClick={() => onOpenLb("Ведущая тренинга", "/images/rzd-training-presenter.jpg")} />
+              <CaseThumb label="Дискуссия" preview="/images/rzd-training-discussion.jpg" onClick={() => onOpenLb("Дискуссия", "/images/rzd-training-discussion.jpg")} />
+              <CaseThumb label="Благодарность" preview="/docs/rzd-blagodarnost-2022.png" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.png")} green />
             </div>
           </div>
           <div className="case" style={{ borderLeft: "3px solid var(--p-green)" }}>
