@@ -1,5 +1,5 @@
 interface CasesSectionProps {
-  onOpenLb: (caption: string) => void;
+  onOpenLb: (caption: string, imageSrc?: string) => void;
   onOpenPdf: (src: string) => void;
 }
 
@@ -44,10 +44,10 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <span className="pill">9,9 / 10</span>
             </div>
             <div className="case-gallery">
-              <CaseThumb label="Работа у флипчарта" onClick={() => onOpenLb("Работа у флипчарта")} />
+              <CaseThumb label="Работа у флипчарта" onClick={() => onOpenLb("Работа у флипчарта", "/images/rzd-training-flipchart.jpg")} />
               <CaseThumb label="Работа в группах" onClick={() => onOpenLb("Работа в группах")} />
               <CaseThumb label="Ведущая тренинга" onClick={() => onOpenLb("Ведущая тренинга")} />
-              <CaseThumb label="Дискуссия" onClick={() => onOpenLb("Дискуссия")} />
+              <CaseThumb label="Дискуссия" onClick={() => onOpenLb("Дискуссия", "/images/rzd-training-discussion.jpg")} />
               <CaseThumb label="Благодарность" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.png")} green />
             </div>
           </div>
