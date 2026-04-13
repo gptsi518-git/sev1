@@ -19,6 +19,8 @@ interface ExperienceSectionProps {
 export default function ExperienceSection({ onOpenPdf }: ExperienceSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const activeCert = eduData[activeIndex].cert;
+
   const handleRowClick = (i: number) => {
     setActiveIndex(i);
     const cert = eduData[i].cert;
@@ -35,20 +37,36 @@ export default function ExperienceSection({ onOpenPdf }: ExperienceSectionProps)
         <h3 className="exp-edu-title">Образование и квалификация</h3>
         <div className="esplit">
           <div className="esplit-scan">
-            <div className="esplit-ph">
-              <div className="sp-h" />
-              <div className="sp-l" />
-              <div className="sp-l" />
-              <div className="sp-l short" />
-              <div className="sp-l" />
-              <div className="sp-l" />
-              <div className="sp-l short" />
-              <div className="sp-l" />
-              <div className="sp-l" />
-              <div className="sp-l short" />
-              <div className="sp-st" />
-              <div className="sp-label">{eduData[activeIndex].label}</div>
-            </div>
+            {activeCert ? (
+              <div className="esplit-ph" style={{ cursor: "pointer" }} onClick={() => onOpenPdf(activeCert)}>
+                <img
+                  src={activeCert}
+                  alt={eduData[activeIndex].label}
+                  style={{
+                    width: "100%",
+                    borderRadius: 8,
+                    border: "1px solid var(--p-border)",
+                    background: "white",
+                  }}
+                />
+                <div className="sp-label">{eduData[activeIndex].label}</div>
+              </div>
+            ) : (
+              <div className="esplit-ph">
+                <div className="sp-h" />
+                <div className="sp-l" />
+                <div className="sp-l" />
+                <div className="sp-l short" />
+                <div className="sp-l" />
+                <div className="sp-l" />
+                <div className="sp-l short" />
+                <div className="sp-l" />
+                <div className="sp-l" />
+                <div className="sp-l short" />
+                <div className="sp-st" />
+                <div className="sp-label">{eduData[activeIndex].label}</div>
+              </div>
+            )}
           </div>
           <div className="esplit-list">
             {eduData.map((edu, i) => (
