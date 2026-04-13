@@ -8,35 +8,50 @@ interface PdfLightboxProps {
 
 export default function PdfLightbox({ isOpen, src, onClose }: PdfLightboxProps) {
   useEffect(() => {
+    if (!isOpen || !src) return;
+
+    if (src.endsWith(".png")) return; // show in lightbox
+
+    // For PDFs — open in new tab via blob to avoid cross-origin blocking
+    const openPdf = async () => {
+      try {
+        const res = await fetch(src);
+        if (!res.ok) throw new Error("fetch failed");
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        window.open(url, "_blank");
+      } catch {
+        window.open(src, "_blank");
+      }
+      onClose();
+    };
+    openPdf();
+  }, [isOpen, src, onClose]);
+
+  useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
   }, [onClose]);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
+    const show = isOpen && src.endsWith(".png");
+    document.body.style.overflow = show ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [isOpen]);
+  }, [isOpen, src]);
 
-  const isPng = src.endsWith(".png");
+  // Only render lightbox overlay for images (PNG)
+  if (!isOpen || !src.endsWith(".png")) return null;
 
   return (
-    <div className={`doc-lightbox${isOpen ? " open" : ""}`} onClick={onClose}>
+    <div className="doc-lightbox open" onClick={onClose}>
       <div
         className="doc-lightbox-inner"
         onClick={(e) => e.stopPropagation()}
-        style={{ padding: 0, maxWidth: isPng ? 600 : 900 }}
+        style={{ padding: 16, maxWidth: 600 }}
       >
         <div className="doc-lightbox-close" onClick={onClose}>&#x2715;</div>
-        {isPng ? (
-          <img src={src} alt="Сертификат" style={{ width: "100%", borderRadius: 12 }} />
-        ) : (
-          <iframe
-            src={src}
-            title="Документ"
-            style={{ width: "100%", height: "80vh", border: "none", borderRadius: 12 }}
-          />
-        )}
+        <img src={src} alt="Сертификат" style={{ width: "100%", borderRadius: 12 }} />
       </div>
     </div>
   );
