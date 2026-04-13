@@ -27,12 +27,14 @@ export const Route = createFileRoute("/")({
 function Index() {
   const [lbOpen, setLbOpen] = useState(false);
   const [lbCaption, setLbCaption] = useState("");
+  const [lbImage, setLbImage] = useState("");
   const [docLbOpen, setDocLbOpen] = useState(false);
   const [pdfSrc, setPdfSrc] = useState("");
   const [pdfOpen, setPdfOpen] = useState(false);
 
-  const openLb = (caption: string) => {
+  const openLb = (caption: string, imageSrc?: string) => {
     setLbCaption(caption);
+    setLbImage(imageSrc || "");
     setLbOpen(true);
   };
 
@@ -53,7 +55,7 @@ function Index() {
       <ContactSection />
       <FooterSection />
       <StickyMobileCta />
-      <Lightbox isOpen={lbOpen} caption={lbCaption} onClose={() => setLbOpen(false)} />
+      <Lightbox isOpen={lbOpen} caption={lbCaption} imageSrc={lbImage} onClose={() => setLbOpen(false)} />
       <DocLightbox isOpen={docLbOpen} onClose={() => setDocLbOpen(false)} />
       <PdfLightbox isOpen={pdfOpen} src={pdfSrc} onClose={() => setPdfOpen(false)} />
     </>
