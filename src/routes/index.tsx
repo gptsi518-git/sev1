@@ -1,19 +1,52 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import NavBar from "../components/portfolio/NavBar";
+import HeroSection from "../components/portfolio/HeroSection";
+import TrustSection from "../components/portfolio/TrustSection";
+import TasksSection from "../components/portfolio/TasksSection";
+import CasesSection from "../components/portfolio/CasesSection";
+import ExperienceSection from "../components/portfolio/ExperienceSection";
+import MagnetsSection from "../components/portfolio/MagnetsSection";
+import ContactSection from "../components/portfolio/ContactSection";
+import FooterSection from "../components/portfolio/FooterSection";
+import StickyMobileCta from "../components/portfolio/StickyMobileCta";
+import Lightbox from "../components/portfolio/Lightbox";
+import DocLightbox from "../components/portfolio/DocLightbox";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Елена Сидоренко — Learning Architect · ИИ-трансформация L&D" },
+      { name: "description", content: "От стратегии обучения до коучинга руководителей — программы, которые меняют поведение и дают бизнес-результат. 15+ лет, 900+ руководителей." },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  const [lbOpen, setLbOpen] = useState(false);
+  const [lbCaption, setLbCaption] = useState("");
+  const [docLbOpen, setDocLbOpen] = useState(false);
+
+  const openLb = (caption: string) => {
+    setLbCaption(caption);
+    setLbOpen(true);
+  };
+
+  return (
+    <>
+      <NavBar />
+      <HeroSection />
+      <TrustSection />
+      <TasksSection onOpenLb={openLb} onOpenDocLb={() => setDocLbOpen(true)} />
+      <CasesSection onOpenLb={openLb} />
+      <ExperienceSection />
+      <MagnetsSection />
+      <ContactSection />
+      <FooterSection />
+      <StickyMobileCta />
+      <Lightbox isOpen={lbOpen} caption={lbCaption} onClose={() => setLbOpen(false)} />
+      <DocLightbox isOpen={docLbOpen} onClose={() => setDocLbOpen(false)} />
+    </>
+  );
 }
