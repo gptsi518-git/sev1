@@ -313,9 +313,16 @@ img { display: block; max-width: 100%; }
   position: sticky; top: 80px; align-self: start;
 }
 .esplit-ph {
-  width: 340px; height: 460px; border: 1px solid var(--p-border); border-radius: 6px;
+  border: 1px solid var(--p-border); border-radius: 6px;
   background: var(--sand); display: flex; flex-direction: column; align-items: center;
-  padding: 32px 28px; gap: 10px;
+  padding: 24px 20px; gap: 10px; box-sizing: border-box;
+  width: 340px; height: 460px;
+}
+.esplit-ph--portrait {
+  width: 340px; height: 480px;
+}
+.esplit-ph--landscape {
+  width: 100%; max-width: 420px; height: auto;
 }
 .esplit-ph .sp-h { width: 50%; height: 10px; background: var(--p-border); border-radius: 4px; }
 .esplit-ph .sp-l { width: 85%; height: 6px; background: var(--p-border); border-radius: 3px; opacity: .35; }
