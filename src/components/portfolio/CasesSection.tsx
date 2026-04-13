@@ -88,9 +88,9 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <span className="pill">10 / 10</span>
             </div>
             <div className="case-gallery">
-              <CaseThumb label="Фото с тренинга" onClick={() => onOpenLb("Фото с тренинга")} />
-              <CaseThumb label="Стратегическая сессия" onClick={() => onOpenLb("Стратегическая сессия")} />
-              <CaseThumb label="Анкеты обратной связи" onClick={() => onOpenLb("Анкеты обратной связи")} />
+              <CaseThumb label="Фото с тренинга" preview="/images/mkb-training-group.jpg" onClick={() => onOpenLb("Фото с тренинга", "/images/mkb-training-group.jpg")} />
+              <CaseThumb label="Стратегическая сессия" preview="/images/mkb-strategic-session.jpg" onClick={() => onOpenLb("Стратегическая сессия", "/images/mkb-strategic-session.jpg")} />
+              <CaseThumb label="Анкеты обратной связи" preview="/images/mkb-feedback-forms.jpg" onClick={() => onOpenLb("Анкеты обратной связи", "/images/mkb-feedback-forms.jpg")} />
             </div>
           </div>
         </div>
