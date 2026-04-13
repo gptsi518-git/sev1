@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 
 interface TasksSectionProps {
-  onOpenLb: (caption: string) => void;
+  onOpenLb: (caption: string, imageSrc?: string) => void;
   onOpenDocLb: () => void;
 }
 
