@@ -22,15 +22,19 @@ const rolesData = [
   { id: "fr4", color: "#534AB7", title: "Executive-коуч", desc: "Карьерные переходы, управленческие вызовы", icon: <><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" /><path d="M8 9h8M8 13h4" /></> },
 ];
 
-function SmallThumb({ label, onClick }: { label: string; onClick: () => void }) {
+function SmallThumb({ label, onClick, preview }: { label: string; onClick: () => void; preview?: string }) {
   return (
     <div
       onClick={onClick}
-      style={{ width: 48, height: 36, borderRadius: 4, background: "var(--sand)", border: "1px solid var(--p-border)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all .15s" }}
+      style={{ width: 48, height: 36, borderRadius: 4, background: "var(--sand)", border: "1px solid var(--p-border)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all .15s", overflow: "hidden" }}
       onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--p-green)")}
       onMouseOut={(e) => (e.currentTarget.style.borderColor = "var(--p-border)")}
     >
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 15l5-5 4 4 4-4 5 5" /></svg>
+      {preview ? (
+        <img src={preview} alt={label} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      ) : (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 15l5-5 4 4 4-4 5 5" /></svg>
+      )}
     </div>
   );
 }
@@ -261,9 +265,9 @@ export default function TasksSection({ onOpenLb, onOpenDocLb }: TasksSectionProp
                 <b style={{ fontSize: 14, color: "var(--p-green)", display: "block", marginBottom: 6 }}>Реестр учебно-методических материалов</b>
                 <span style={{ fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.5, display: "block", marginBottom: 10 }}>Поиск, фильтры, карточки программ: аудитория, формат, автор, статус. ИИ проверяет актуальность и сигнализирует о дублировании</span>
                 <div style={{ display: "flex", gap: 6 }}>
-                  {["Реестр УММ — главный экран", "Реестр УММ — карточка программы", "Реестр УММ — фильтры"].map((l) => (
-                    <SmallThumb key={l} label={l} onClick={() => onOpenLb(l)} />
-                  ))}
+                  <SmallThumb label="Реестр УММ — главный экран" preview="/images/reestr-main-screen.png" onClick={() => onOpenLb("Реестр УММ — главный экран", "/images/reestr-main-screen.png")} />
+                  <SmallThumb label="Реестр УММ — дашборд" preview="/images/reestr-dashboard.png" onClick={() => onOpenLb("Реестр УММ — дашборд", "/images/reestr-dashboard.png")} />
+                  <SmallThumb label="Реестр УММ — справочники" preview="/images/reestr-handbook.png" onClick={() => onOpenLb("Реестр УММ — справочники", "/images/reestr-handbook.png")} />
                 </div>
               </div>
               <div style={{ padding: 14, borderRadius: 8, background: "var(--p-white)", border: "1px solid var(--p-border)" }}>
