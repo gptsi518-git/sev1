@@ -78,6 +78,7 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <CaseThumb label="Благодарность" onClick={() => onOpenLb("Благодарность")} />
               <CaseThumb label="Благодарность РЖД" preview="/docs/rzd-blagodarnost-2022.png" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.png")} green />
               <CaseThumb label="Грамота" onClick={() => onOpenPdf("/docs/rzd-gramota-2024.png")} green />
+              <CaseThumb label="Грамота 2024" preview="/images/rzd-gramota-2024-2.jpg" onClick={() => onOpenLb("Грамота 2024", "/images/rzd-gramota-2024-2.jpg")} green />
             </div>
           </div>
           <div className="case has-logo">
