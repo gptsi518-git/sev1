@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback, useEffect } from "react";
+import type { GalleryItem } from "./Lightbox";
 
 interface TasksSectionProps {
-  onOpenLb: (caption: string, imageSrc?: string) => void;
+  onOpenLb: (caption: string, imageSrc?: string, gallery?: GalleryItem[], index?: number) => void;
   onOpenDocLb: () => void;
 }
 
