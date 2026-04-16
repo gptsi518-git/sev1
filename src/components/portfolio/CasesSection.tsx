@@ -1,5 +1,7 @@
+import type { GalleryItem } from "./Lightbox";
+
 interface CasesSectionProps {
-  onOpenLb: (caption: string, imageSrc?: string) => void;
+  onOpenLb: (caption: string, imageSrc?: string, gallery?: GalleryItem[], index?: number) => void;
   onOpenPdf: (src: string) => void;
 }
 
@@ -25,6 +27,28 @@ function CaseThumb({ label, onClick, green, preview }: { label: string; onClick:
   );
 }
 
+const gallery157: GalleryItem[] = [
+  { caption: "Работа у флипчарта", imageSrc: "/images/rzd-training-flipchart.jpg" },
+  { caption: "Работа в группах", imageSrc: "/images/rzd-training-laptops.jpg" },
+  { caption: "Ведущая тренинга", imageSrc: "/images/rzd-training-presenter.jpg" },
+  { caption: "Дискуссия", imageSrc: "/images/rzd-training-discussion.jpg" },
+  { caption: "Онлайн-сессия", imageSrc: "/images/rzd-178-online-session.jpg" },
+  { caption: "Благодарность 2025", imageSrc: "/images/rzd-blagodarnost-2025.jpg" },
+];
+
+const gallery178: GalleryItem[] = [
+  { caption: "Развивающая ОС" },
+  { caption: "Чек-лист" },
+  { caption: "Благодарность" },
+  { caption: "Грамота 2024", imageSrc: "/images/rzd-gramota-2024-2.jpg" },
+];
+
+const galleryMkb: GalleryItem[] = [
+  { caption: "Фото с тренинга", imageSrc: "/images/mkb-training-group.jpg" },
+  { caption: "Стратегическая сессия", imageSrc: "/images/mkb-strategic-session.jpg" },
+  { caption: "Анкеты обратной связи", imageSrc: "/images/mkb-feedback-forms.jpg" },
+];
+
 export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps) {
   return (
     <section className="cases" id="cases">
@@ -46,13 +70,9 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <span className="pill">9,9 / 10</span>
             </div>
             <div className="case-gallery">
-              <CaseThumb label="Работа у флипчарта" preview="/images/rzd-training-flipchart.jpg" onClick={() => onOpenLb("Работа у флипчарта", "/images/rzd-training-flipchart.jpg")} />
-              <CaseThumb label="Работа в группах" preview="/images/rzd-training-laptops.jpg" onClick={() => onOpenLb("Работа в группах", "/images/rzd-training-laptops.jpg")} />
-              <CaseThumb label="Ведущая тренинга" preview="/images/rzd-training-presenter.jpg" onClick={() => onOpenLb("Ведущая тренинга", "/images/rzd-training-presenter.jpg")} />
-              <CaseThumb label="Дискуссия" preview="/images/rzd-training-discussion.jpg" onClick={() => onOpenLb("Дискуссия", "/images/rzd-training-discussion.jpg")} />
-              <CaseThumb label="Онлайн-сессия" preview="/images/rzd-178-online-session.jpg" onClick={() => onOpenLb("Онлайн-сессия", "/images/rzd-178-online-session.jpg")} />
-              <CaseThumb label="Благодарность 2025" preview="/images/rzd-blagodarnost-2025.jpg" onClick={() => onOpenLb("Благодарность 2025", "/images/rzd-blagodarnost-2025.jpg")} />
-
+              {gallery157.map((item, i) => (
+                <CaseThumb key={item.caption} label={item.caption} preview={item.imageSrc} onClick={() => onOpenLb(item.caption, item.imageSrc, gallery157, i)} />
+              ))}
             </div>
           </div>
           <div className="case" style={{ borderLeft: "3px solid var(--p-green)" }}>
@@ -73,12 +93,11 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <span className="pill">T2M −35%</span>
             </div>
             <div className="case-gallery">
-              <CaseThumb label="Развивающая ОС" onClick={() => onOpenLb("Развивающая ОС")} />
-              <CaseThumb label="Чек-лист" onClick={() => onOpenLb("Чек-лист")} />
-              <CaseThumb label="Благодарность" onClick={() => onOpenLb("Благодарность")} />
+              {gallery178.map((item, i) => (
+                <CaseThumb key={item.caption} label={item.caption} preview={item.imageSrc} onClick={() => onOpenLb(item.caption, item.imageSrc, gallery178, i)} />
+              ))}
               <CaseThumb label="Благодарность РЖД" preview="/docs/rzd-blagodarnost-2022.png" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.png")} green />
               <CaseThumb label="Грамота" onClick={() => onOpenPdf("/docs/rzd-gramota-2024.png")} green />
-              <CaseThumb label="Грамота 2024" preview="/images/rzd-gramota-2024-2.jpg" onClick={() => onOpenLb("Грамота 2024", "/images/rzd-gramota-2024-2.jpg")} green />
             </div>
           </div>
           <div className="case has-logo">
@@ -91,9 +110,9 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <span className="pill">10 / 10</span>
             </div>
             <div className="case-gallery">
-              <CaseThumb label="Фото с тренинга" preview="/images/mkb-training-group.jpg" onClick={() => onOpenLb("Фото с тренинга", "/images/mkb-training-group.jpg")} />
-              <CaseThumb label="Стратегическая сессия" preview="/images/mkb-strategic-session.jpg" onClick={() => onOpenLb("Стратегическая сессия", "/images/mkb-strategic-session.jpg")} />
-              <CaseThumb label="Анкеты обратной связи" preview="/images/mkb-feedback-forms.jpg" onClick={() => onOpenLb("Анкеты обратной связи", "/images/mkb-feedback-forms.jpg")} />
+              {galleryMkb.map((item, i) => (
+                <CaseThumb key={item.caption} label={item.caption} preview={item.imageSrc} onClick={() => onOpenLb(item.caption, item.imageSrc, galleryMkb, i)} />
+              ))}
             </div>
           </div>
         </div>
