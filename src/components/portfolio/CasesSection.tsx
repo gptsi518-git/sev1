@@ -50,7 +50,7 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               <CaseThumb label="Работа в группах" preview="/images/rzd-training-laptops.jpg" onClick={() => onOpenLb("Работа в группах", "/images/rzd-training-laptops.jpg")} />
               <CaseThumb label="Ведущая тренинга" preview="/images/rzd-training-presenter.jpg" onClick={() => onOpenLb("Ведущая тренинга", "/images/rzd-training-presenter.jpg")} />
               <CaseThumb label="Дискуссия" preview="/images/rzd-training-discussion.jpg" onClick={() => onOpenLb("Дискуссия", "/images/rzd-training-discussion.jpg")} />
-              <CaseThumb label="Благодарность 2025" preview="/images/rzd-blagodarnost-2025.png" onClick={() => onOpenPdf("/images/rzd-blagodarnost-2025.png")} green />
+              <CaseThumb label="Благодарность 2025" preview="/images/rzd-blagodarnost-2025.jpg" onClick={() => onOpenLb("Благодарность 2025", "/images/rzd-blagodarnost-2025.jpg")} />
 
             </div>
           </div>
