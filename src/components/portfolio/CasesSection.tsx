@@ -99,7 +99,9 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
             </div>
           </div>
           <div className="case has-logo">
-            <div style={{ position: "absolute", top: 20, right: 20, width: 56, height: 56, borderRadius: 10, background: "var(--sand)", border: "1px solid var(--p-border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 600, color: "var(--ink-muted)" }}>МКБ</div>
+            <div style={{ position: "absolute", top: 20, right: 20, width: 56, height: 56, borderRadius: 10, background: "var(--sand)", border: "1px solid var(--p-border)", display: "flex", alignItems: "center", justifyContent: "center", padding: 8 }}>
+              <img src="/images/mkb-logo.svg" alt="МКБ" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+            </div>
             <div className="case-client">Московский кредитный банк</div>
             <h3>Годовая программа развития руководителей</h3>
             <p>Комплексная программа, одобренная Правлением Банка. Обучение 75 групп руководителей.</p>
