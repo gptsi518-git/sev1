@@ -60,7 +60,9 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
 
         <div className="cases-top">
           <div className="case has-logo">
-            <div style={{ position: "absolute", top: 20, right: 20, width: 56, height: 56, borderRadius: 10, background: "var(--sand)", border: "1px solid var(--p-border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 600, color: "var(--ink-muted)" }}>РЖД</div>
+            <div style={{ position: "absolute", top: 20, right: 20, width: 72, height: 56, borderRadius: 10, background: "var(--sand)", border: "1px solid var(--p-border)", display: "flex", alignItems: "center", justifyContent: "center", padding: 6 }}>
+              <img src="/images/rzd-logo.png" alt="РЖД" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+            </div>
             <div className="case-client">Корпоративный университет РЖД</div>
             <h3>157 внутренних тренеров</h3>
             <p>Программа подготовки внутренних тренеров из числа руководителей. Архитектура, методика, сопровождение — полный цикл за 3 года.</p>
@@ -83,7 +85,9 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
 
         <div className="cases-bottom">
           <div className="case has-logo">
-            <div style={{ position: "absolute", top: 20, right: 20, width: 56, height: 56, borderRadius: 10, background: "var(--sand)", border: "1px solid var(--p-border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 600, color: "var(--ink-muted)" }}>РЖД</div>
+            <div style={{ position: "absolute", top: 20, right: 20, width: 72, height: 56, borderRadius: 10, background: "var(--sand)", border: "1px solid var(--p-border)", display: "flex", alignItems: "center", justifyContent: "center", padding: 6 }}>
+              <img src="/images/rzd-logo.png" alt="РЖД" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+            </div>
             <div className="case-client">Корпоративный университет РЖД</div>
             <h3>Контроль качества 178+ программ</h3>
             <p>Контроль качества, развивающая обратная связь авторам, методические рекомендации.</p>
