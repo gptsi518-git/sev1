@@ -39,7 +39,6 @@ const gallery157: GalleryItem[] = [
 const gallery178: GalleryItem[] = [
   { caption: "Развивающая ОС" },
   { caption: "Чек-лист" },
-  { caption: "Благодарность" },
   { caption: "Грамота 2024", imageSrc: "/images/rzd-gramota-2024-2.jpg" },
 ];
 
