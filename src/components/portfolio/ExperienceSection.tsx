@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 const eduData = [
-  { year: "2026", title: "Agent Skills для L&D", org: "Мандрик, Казаков и роботы", label: "Agent Skills для L&D — 2026", cert: null },
+  { year: "2026", title: "Agent Skills для L&D", org: "Мандрик, Казаков и роботы", label: "Agent Skills для L&D — 2026", cert: "/docs/cert-agent-skills-2026-1.png" },
   { year: "2026", title: "Практикумы по вайбкодингу", org: "LXD Hero", label: "Практикумы по вайбкодингу — 2026", cert: "/docs/cert-vibecoding-2026-2.png" },
   { year: "2024", title: "Нейрогерой образования", org: "LXD Hero · Нейрогуру программы", label: "Нейрогерой образования — 2024 · Отзыв на сайте LXD Hero →", cert: null },
   { year: "2022", title: "Проектирование образовательного опыта", org: "LXD Hero", label: "Проектирование обр. опыта — 2022", cert: "/docs/cert-lxd-mentoring-2022.png" },
