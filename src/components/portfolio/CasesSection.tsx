@@ -96,8 +96,6 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
               {gallery178.map((item, i) => (
                 <CaseThumb key={item.caption} label={item.caption} preview={item.imageSrc} onClick={() => onOpenLb(item.caption, item.imageSrc, gallery178, i)} />
               ))}
-              <CaseThumb label="Благодарность РЖД" preview="/docs/rzd-blagodarnost-2022.png" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.png")} green />
-              <CaseThumb label="Грамота" onClick={() => onOpenPdf("/docs/rzd-gramota-2024.png")} green />
             </div>
           </div>
           <div className="case has-logo">
