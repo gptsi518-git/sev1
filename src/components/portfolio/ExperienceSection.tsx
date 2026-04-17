@@ -71,7 +71,23 @@ export default function ExperienceSection({ onOpenPdf }: ExperienceSectionProps)
                     background: "white",
                   }}
                 />
-                <div className="sp-label">{eduData[activeIndex].label}</div>
+                <div className="sp-label">
+                  {eduData[activeIndex].label}
+                  {eduData[activeIndex].link && (
+                    <>
+                      {" · "}
+                      <a
+                        href={eduData[activeIndex].link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{ color: "var(--p-blue)", textDecoration: "underline" }}
+                      >
+                        {eduData[activeIndex].linkLabel}
+                      </a>
+                    </>
+                  )}
+                </div>
               </div>
             ) : (
               <div className="esplit-ph">
