@@ -75,7 +75,7 @@ export default function ExperienceSection({ onOpenPdf }: ExperienceSectionProps)
               <div
                 className={`esplit-ph ${isLandscape ? "esplit-ph--landscape" : "esplit-ph--portrait"}`}
                 style={{ cursor: "pointer" }}
-                onClick={() => onOpenPdf(activeCert)}
+                onClick={() => openCertAt(activeIndex)}
               >
                 <img
                   ref={imgRef}
