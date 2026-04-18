@@ -19,10 +19,12 @@ export default function PdfLightbox({ isOpen, src, onClose, onPrev, onNext, canP
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft" && canPrev && onPrev) onPrev();
+      if (e.key === "ArrowRight" && canNext && onNext) onNext();
     };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
-  }, [onClose]);
+  }, [onClose, onPrev, onNext, canPrev, canNext]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
