@@ -13,7 +13,10 @@ const eduData = [
 ];
 
 interface ExperienceSectionProps {
-  onOpenPdf: (src: string) => void;
+  onOpenPdf: (
+    src: string,
+    nav?: { onPrev?: () => void; onNext?: () => void; canPrev?: boolean; canNext?: boolean }
+  ) => void;
 }
 
 export default function ExperienceSection({ onOpenPdf }: ExperienceSectionProps) {
@@ -34,11 +37,29 @@ export default function ExperienceSection({ onOpenPdf }: ExperienceSectionProps)
     }
   };
 
+  const certIndices = eduData
+    .map((e, i) => (e.cert ? i : -1))
+    .filter((i) => i >= 0);
+
+  const openCertAt = (i: number) => {
+    const cert = eduData[i].cert;
+    if (!cert) return;
+    setActiveIndex(i);
+    const pos = certIndices.indexOf(i);
+    const prevIdx = pos > 0 ? certIndices[pos - 1] : undefined;
+    const nextIdx = pos < certIndices.length - 1 ? certIndices[pos + 1] : undefined;
+    onOpenPdf(cert, {
+      canPrev: prevIdx !== undefined,
+      canNext: nextIdx !== undefined,
+      onPrev: prevIdx !== undefined ? () => openCertAt(prevIdx) : undefined,
+      onNext: nextIdx !== undefined ? () => openCertAt(nextIdx) : undefined,
+    });
+  };
+
   const handleRowClick = (i: number) => {
     setActiveIndex(i);
-    const cert = eduData[i].cert;
-    if (cert) {
-      onOpenPdf(cert);
+    if (eduData[i].cert) {
+      openCertAt(i);
     }
   };
 
