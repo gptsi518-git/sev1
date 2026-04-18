@@ -80,7 +80,15 @@ function Index() {
         onClose={() => setLbOpen(false)}
       />
       <DocLightbox isOpen={docLbOpen} onClose={() => setDocLbOpen(false)} />
-      <PdfLightbox isOpen={pdfOpen} src={pdfSrc} onClose={() => setPdfOpen(false)} />
+      <PdfLightbox
+        isOpen={pdfOpen}
+        src={pdfSrc}
+        onClose={() => setPdfOpen(false)}
+        onPrev={pdfNav.onPrev}
+        onNext={pdfNav.onNext}
+        canPrev={pdfNav.canPrev}
+        canNext={pdfNav.canNext}
+      />
     </>
   );
 }
