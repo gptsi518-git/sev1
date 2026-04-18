@@ -150,12 +150,42 @@ img { display: block; max-width: 100%; }
 .flow-role .fr-icon svg { width: 20px; height: 20px; }
 .flow-role h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
 .flow-role p { font-size: 14px; color: var(--ink-muted); line-height: 1.5; }
+.flow-role .fr-icon,
+.flow-role h4,
+.flow-role p { transition: filter .5s; }
+.flow-role:not(.revealed) .fr-icon,
+.flow-role:not(.revealed) h4,
+.flow-role:not(.revealed) p { filter: blur(6px) grayscale(1); }
 .flow-role .spoiler {
-  position: absolute; inset: 0; z-index: 2; border-radius: 11px; overflow: hidden; transition: opacity .6s;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4' seed='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.47 0 0 0 0 0.46 0 0 0 0 0.44 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
+  position: absolute; inset: 0; z-index: 2; border-radius: 11px; overflow: hidden;
+  transition: opacity .6s ease;
+  background-color: #2a2a2a;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -0.2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' seed='12' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n2)'/%3E%3C/svg%3E");
+  background-size: 240px 240px, 200px 200px;
+  animation: spoiler-drift 1.6s steps(8) infinite;
+  display: flex; align-items: center; justify-content: center;
+  cursor: help;
 }
-.flow-role.revealed .spoiler { opacity: 0; pointer-events: none; }
+.flow-role .spoiler::after {
+  content: "Нажмите на запрос ↑";
+  font-family: 'Onest', sans-serif;
+  font-size: 12px; font-weight: 500; color: rgba(255,255,255,.85);
+  letter-spacing: .02em;
+  padding: 6px 10px; border-radius: 6px;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(2px);
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+.flow-role.revealed .spoiler { opacity: 0; pointer-events: none; animation: none; }
+@keyframes spoiler-drift {
+  0%   { background-position: 0 0, 0 0; }
+  25%  { background-position: -60px 30px, 40px -20px; }
+  50%  { background-position: 30px -40px, -30px 50px; }
+  75%  { background-position: -20px 60px, 60px 20px; }
+  100% { background-position: 0 0, 0 0; }
+}
 
 /* Flow plan */
 .flow-plan { border-radius: 16px; background: var(--p-white); display: none; overflow: hidden; padding: 0; }
