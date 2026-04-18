@@ -278,11 +278,20 @@ export default function TasksSection({ onOpenLb, onOpenDocLb }: TasksSectionProp
               <div style={{ padding: 14, borderRadius: 8, background: "var(--p-white)", border: "1px solid var(--p-border)" }}>
                 <b style={{ fontSize: 14, color: "var(--p-green)", display: "block", marginBottom: 6 }}>Реестр учебно-методических материалов</b>
                 <span style={{ fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.5, display: "block", marginBottom: 10 }}>Поиск, фильтры, карточки программ: аудитория, формат, автор, статус. ИИ проверяет актуальность и сигнализирует о дублировании</span>
-                <div style={{ display: "flex", gap: 6 }}>
-                  <SmallThumb label="Реестр УММ — главный экран" preview="/images/reestr-main-screen.png" onClick={() => onOpenLb("Реестр УММ — главный экран", "/images/reestr-main-screen.png")} />
-                  <SmallThumb label="Реестр УММ — дашборд" preview="/images/reestr-dashboard.png" onClick={() => onOpenLb("Реестр УММ — дашборд", "/images/reestr-dashboard.png")} />
-                  <SmallThumb label="Реестр УММ — справочники" preview="/images/reestr-handbook.png" onClick={() => onOpenLb("Реестр УММ — справочники", "/images/reestr-handbook.png")} />
-                </div>
+                {(() => {
+                  const reestrGallery: GalleryItem[] = [
+                    { caption: "Реестр УММ — главный экран", imageSrc: "/images/reestr-main-screen.png" },
+                    { caption: "Реестр УММ — дашборд", imageSrc: "/images/reestr-dashboard.png" },
+                    { caption: "Реестр УММ — справочники", imageSrc: "/images/reestr-handbook.png" },
+                  ];
+                  return (
+                    <div style={{ display: "flex", gap: 6 }}>
+                      {reestrGallery.map((item, i) => (
+                        <SmallThumb key={item.caption} label={item.caption} preview={item.imageSrc} onClick={() => onOpenLb(item.caption, item.imageSrc, reestrGallery, i)} />
+                      ))}
+                    </div>
+                  );
+                })()}
               </div>
               <div style={{ padding: 14, borderRadius: 8, background: "var(--p-white)", border: "1px solid var(--p-border)" }}>
                 <b style={{ fontSize: 14, color: "var(--p-green)", display: "block", marginBottom: 6 }}>Расписание центра</b>
