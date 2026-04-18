@@ -4,9 +4,13 @@ interface PdfLightboxProps {
   isOpen: boolean;
   src: string;
   onClose: () => void;
+  onPrev?: () => void;
+  onNext?: () => void;
+  canPrev?: boolean;
+  canNext?: boolean;
 }
 
-export default function PdfLightbox({ isOpen, src, onClose }: PdfLightboxProps) {
+export default function PdfLightbox({ isOpen, src, onClose, onPrev, onNext, canPrev, canNext }: PdfLightboxProps) {
   const [pageImages, setPageImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
