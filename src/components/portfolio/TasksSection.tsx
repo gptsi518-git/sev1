@@ -296,11 +296,20 @@ export default function TasksSection({ onOpenLb, onOpenDocLb }: TasksSectionProp
               <div style={{ padding: 14, borderRadius: 8, background: "var(--p-white)", border: "1px solid var(--p-border)" }}>
                 <b style={{ fontSize: 14, color: "var(--p-green)", display: "block", marginBottom: 6 }}>Расписание центра</b>
                 <span style={{ fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.5, display: "block", marginBottom: 10 }}>Интерактивная доска: фильтры по программе, тренеру, формату. Автоматическое распределение по аудиториям. Администратор управляет за минуты</span>
-                <div style={{ display: "flex", gap: 6 }}>
-                  <SmallThumb label="Расписание — общий вид" preview="/images/raspisanie-calendar.png" onClick={() => onOpenLb("Расписание — общий вид", "/images/raspisanie-calendar.png")} />
-                  <SmallThumb label="Расписание — по типам событий" preview="/images/raspisanie-tipy.png" onClick={() => onOpenLb("Расписание — по типам событий", "/images/raspisanie-tipy.png")} />
-                  <SmallThumb label="Расписание — админ-панель" onClick={() => onOpenLb("Расписание — админ-панель")} />
-                </div>
+                {(() => {
+                  const raspisanieGallery: GalleryItem[] = [
+                    { caption: "Расписание — общий вид", imageSrc: "/images/raspisanie-calendar.png" },
+                    { caption: "Расписание — по типам событий", imageSrc: "/images/raspisanie-tipy.png" },
+                    { caption: "Расписание — админ-панель" },
+                  ];
+                  return (
+                    <div style={{ display: "flex", gap: 6 }}>
+                      {raspisanieGallery.map((item, i) => (
+                        <SmallThumb key={item.caption} label={item.caption} preview={item.imageSrc} onClick={() => onOpenLb(item.caption, item.imageSrc, raspisanieGallery, i)} />
+                      ))}
+                    </div>
+                  );
+                })()}
               </div>
               <div style={{ padding: 14, borderRadius: 8, background: "var(--p-white)", border: "1px solid var(--p-border)" }}>
                 <b style={{ fontSize: 14, color: "var(--p-green)", display: "block", marginBottom: 6 }}>Сайт образовательных продуктов</b>
