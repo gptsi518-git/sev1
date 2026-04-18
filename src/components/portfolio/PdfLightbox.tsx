@@ -4,9 +4,13 @@ interface PdfLightboxProps {
   isOpen: boolean;
   src: string;
   onClose: () => void;
+  onPrev?: () => void;
+  onNext?: () => void;
+  canPrev?: boolean;
+  canNext?: boolean;
 }
 
-export default function PdfLightbox({ isOpen, src, onClose }: PdfLightboxProps) {
+export default function PdfLightbox({ isOpen, src, onClose, onPrev, onNext, canPrev, canNext }: PdfLightboxProps) {
   const [pageImages, setPageImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -15,10 +19,12 @@ export default function PdfLightbox({ isOpen, src, onClose }: PdfLightboxProps) 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft" && canPrev && onPrev) onPrev();
+      if (e.key === "ArrowRight" && canNext && onNext) onNext();
     };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
-  }, [onClose]);
+  }, [onClose, onPrev, onNext, canPrev, canNext]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -122,6 +128,62 @@ export default function PdfLightbox({ isOpen, src, onClose }: PdfLightboxProps) 
         }}
       >
         <div className="doc-lightbox-close" onClick={onClose}>&#x2715;</div>
+
+        {canPrev && onPrev && (
+          <button
+            onClick={(e) => { e.stopPropagation(); onPrev(); }}
+            aria-label="Предыдущий"
+            style={{
+              position: "fixed",
+              left: 24,
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "rgba(255,255,255,0.95)",
+              border: "1px solid var(--p-border)",
+              borderRadius: "50%",
+              width: 48,
+              height: 48,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              zIndex: 10000,
+              boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
+            }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+        )}
+
+        {canNext && onNext && (
+          <button
+            onClick={(e) => { e.stopPropagation(); onNext(); }}
+            aria-label="Следующий"
+            style={{
+              position: "fixed",
+              right: 24,
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "rgba(255,255,255,0.95)",
+              border: "1px solid var(--p-border)",
+              borderRadius: "50%",
+              width: 48,
+              height: 48,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              zIndex: 10000,
+              boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
+            }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        )}
 
         {loading && (
           <div style={{ padding: "48px 24px", textAlign: "center", color: "var(--ink-muted)" }}>
