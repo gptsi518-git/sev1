@@ -34,6 +34,7 @@ function Index() {
   const [docLbOpen, setDocLbOpen] = useState(false);
   const [pdfSrc, setPdfSrc] = useState("");
   const [pdfOpen, setPdfOpen] = useState(false);
+  const [pdfNav, setPdfNav] = useState<{ onPrev?: () => void; onNext?: () => void; canPrev?: boolean; canNext?: boolean }>({});
 
   const openLb = useCallback((caption: string, imageSrc?: string, gallery?: GalleryItem[], index?: number) => {
     setLbCaption(caption);
@@ -51,10 +52,11 @@ function Index() {
     }
   }, [lbGallery]);
 
-  const openPdf = (src: string) => {
+  const openPdf = useCallback((src: string, nav?: { onPrev?: () => void; onNext?: () => void; canPrev?: boolean; canNext?: boolean }) => {
     setPdfSrc(src);
+    setPdfNav(nav || {});
     setPdfOpen(true);
-  };
+  }, []);
 
   return (
     <>
