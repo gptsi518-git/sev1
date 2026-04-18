@@ -224,28 +224,31 @@ export default function TasksSection({ onOpenLb, onOpenDocLb }: TasksSectionProp
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" strokeWidth="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><path d="M14 2v6h6" /><path d="M8 13h8M8 17h5" /></svg>
               <span style={{ fontSize: 11, color: "var(--ink-muted)", fontWeight: 500 }}>Кейс</span>
             </div>
-            {[
-              { label: "Главный экран", preview: "/images/game-main-screen.png" },
-              { label: "Карточка" },
-              { label: "Процесс игры" },
-            ].map(({ label, preview }) => (
-              <div
-                key={label}
-                onClick={() => onOpenLb(`Скрин игры — ${label.toLowerCase()}`, preview)}
-                style={{ width: 120, height: 100, borderRadius: 8, background: "var(--sand)", border: "1px solid var(--p-border)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all .2s", gap: 4, overflow: "hidden" }}
-                onMouseOver={(e) => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.borderColor = "var(--p-green)"; }}
-                onMouseOut={(e) => { e.currentTarget.style.transform = ""; e.currentTarget.style.borderColor = "var(--p-border)"; }}
-              >
-                {preview ? (
-                  <img src={preview} alt={label} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                ) : (
-                  <>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 15l5-5 4 4 4-4 5 5" /></svg>
-                    <span style={{ fontSize: 11, color: "var(--ink-muted)", fontWeight: 500 }}>{label}</span>
-                  </>
-                )}
-              </div>
-            ))}
+            {(() => {
+              const gameGallery: GalleryItem[] = [
+                { caption: "Скрин игры — главный экран", imageSrc: "/images/game-main-screen.png" },
+                { caption: "Скрин игры — карточка" },
+                { caption: "Скрин игры — процесс игры" },
+              ];
+              return gameGallery.map((item, i) => (
+                <div
+                  key={item.caption}
+                  onClick={() => onOpenLb(item.caption, item.imageSrc, gameGallery, i)}
+                  style={{ width: 120, height: 100, borderRadius: 8, background: "var(--sand)", border: "1px solid var(--p-border)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all .2s", gap: 4, overflow: "hidden" }}
+                  onMouseOver={(e) => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.borderColor = "var(--p-green)"; }}
+                  onMouseOut={(e) => { e.currentTarget.style.transform = ""; e.currentTarget.style.borderColor = "var(--p-border)"; }}
+                >
+                  {item.imageSrc ? (
+                    <img src={item.imageSrc} alt={item.caption} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  ) : (
+                    <>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 15l5-5 4 4 4-4 5 5" /></svg>
+                      <span style={{ fontSize: 11, color: "var(--ink-muted)", fontWeight: 500 }}>{item.caption.replace("Скрин игры — ", "")}</span>
+                    </>
+                  )}
+                </div>
+              ));
+            })()}
           </div>
         </div>
 
@@ -275,20 +278,38 @@ export default function TasksSection({ onOpenLb, onOpenDocLb }: TasksSectionProp
               <div style={{ padding: 14, borderRadius: 8, background: "var(--p-white)", border: "1px solid var(--p-border)" }}>
                 <b style={{ fontSize: 14, color: "var(--p-green)", display: "block", marginBottom: 6 }}>Реестр учебно-методических материалов</b>
                 <span style={{ fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.5, display: "block", marginBottom: 10 }}>Поиск, фильтры, карточки программ: аудитория, формат, автор, статус. ИИ проверяет актуальность и сигнализирует о дублировании</span>
-                <div style={{ display: "flex", gap: 6 }}>
-                  <SmallThumb label="Реестр УММ — главный экран" preview="/images/reestr-main-screen.png" onClick={() => onOpenLb("Реестр УММ — главный экран", "/images/reestr-main-screen.png")} />
-                  <SmallThumb label="Реестр УММ — дашборд" preview="/images/reestr-dashboard.png" onClick={() => onOpenLb("Реестр УММ — дашборд", "/images/reestr-dashboard.png")} />
-                  <SmallThumb label="Реестр УММ — справочники" preview="/images/reestr-handbook.png" onClick={() => onOpenLb("Реестр УММ — справочники", "/images/reestr-handbook.png")} />
-                </div>
+                {(() => {
+                  const reestrGallery: GalleryItem[] = [
+                    { caption: "Реестр УММ — главный экран", imageSrc: "/images/reestr-main-screen.png" },
+                    { caption: "Реестр УММ — дашборд", imageSrc: "/images/reestr-dashboard.png" },
+                    { caption: "Реестр УММ — справочники", imageSrc: "/images/reestr-handbook.png" },
+                  ];
+                  return (
+                    <div style={{ display: "flex", gap: 6 }}>
+                      {reestrGallery.map((item, i) => (
+                        <SmallThumb key={item.caption} label={item.caption} preview={item.imageSrc} onClick={() => onOpenLb(item.caption, item.imageSrc, reestrGallery, i)} />
+                      ))}
+                    </div>
+                  );
+                })()}
               </div>
               <div style={{ padding: 14, borderRadius: 8, background: "var(--p-white)", border: "1px solid var(--p-border)" }}>
                 <b style={{ fontSize: 14, color: "var(--p-green)", display: "block", marginBottom: 6 }}>Расписание центра</b>
                 <span style={{ fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.5, display: "block", marginBottom: 10 }}>Интерактивная доска: фильтры по программе, тренеру, формату. Автоматическое распределение по аудиториям. Администратор управляет за минуты</span>
-                <div style={{ display: "flex", gap: 6 }}>
-                  <SmallThumb label="Расписание — общий вид" preview="/images/raspisanie-calendar.png" onClick={() => onOpenLb("Расписание — общий вид", "/images/raspisanie-calendar.png")} />
-                  <SmallThumb label="Расписание — по типам событий" preview="/images/raspisanie-tipy.png" onClick={() => onOpenLb("Расписание — по типам событий", "/images/raspisanie-tipy.png")} />
-                  <SmallThumb label="Расписание — админ-панель" onClick={() => onOpenLb("Расписание — админ-панель")} />
-                </div>
+                {(() => {
+                  const raspisanieGallery: GalleryItem[] = [
+                    { caption: "Расписание — общий вид", imageSrc: "/images/raspisanie-calendar.png" },
+                    { caption: "Расписание — по типам событий", imageSrc: "/images/raspisanie-tipy.png" },
+                    { caption: "Расписание — админ-панель" },
+                  ];
+                  return (
+                    <div style={{ display: "flex", gap: 6 }}>
+                      {raspisanieGallery.map((item, i) => (
+                        <SmallThumb key={item.caption} label={item.caption} preview={item.imageSrc} onClick={() => onOpenLb(item.caption, item.imageSrc, raspisanieGallery, i)} />
+                      ))}
+                    </div>
+                  );
+                })()}
               </div>
               <div style={{ padding: 14, borderRadius: 8, background: "var(--p-white)", border: "1px solid var(--p-border)" }}>
                 <b style={{ fontSize: 14, color: "var(--p-green)", display: "block", marginBottom: 6 }}>Сайт образовательных продуктов</b>
