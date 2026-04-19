@@ -159,32 +159,32 @@ img { display: block; max-width: 100%; }
 .flow-role .spoiler {
   position: absolute; inset: 0; z-index: 2; border-radius: 11px; overflow: hidden;
   transition: opacity .6s ease;
-  background-color: #3a3a3a;
+  background-color: #e8e8e8;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 -0.4'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='2' seed='12' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23n2)'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.2 -0.1'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' seed='12' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.6  0 0 0 0 0.6  0 0 0 0 0.6  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23n2)'/%3E%3C/svg%3E");
   background-size: 320px 320px, 280px 280px;
-  animation: spoiler-drift 6s linear infinite;
+  animation: spoiler-flicker 1.4s steps(6) infinite;
   display: flex; align-items: center; justify-content: center;
   cursor: help;
 }
 .flow-role .spoiler::after {
   content: "Нажмите на запрос ↑";
   font-family: 'Onest', sans-serif;
-  font-size: 12px; font-weight: 500; color: rgba(255,255,255,.85);
+  font-size: 12px; font-weight: 500; color: #444;
   letter-spacing: .02em;
   padding: 6px 10px; border-radius: 6px;
-  background: rgba(0,0,0,.35);
+  background: rgba(255,255,255,.7);
   backdrop-filter: blur(2px);
-  text-shadow: 0 1px 2px rgba(0,0,0,.6);
 }
 .flow-role.revealed .spoiler { opacity: 0; pointer-events: none; animation: none; }
-@keyframes spoiler-drift {
-  0%   { background-position: 0 0, 0 0; }
-  25%  { background-position: -80px 40px, 50px -30px; }
-  50%  { background-position: 40px -60px, -40px 70px; }
-  75%  { background-position: -30px 80px, 80px 30px; }
-  100% { background-position: 0 0, 0 0; }
+@keyframes spoiler-flicker {
+  0%   { opacity: 1;   filter: contrast(1)    brightness(1); }
+  20%  { opacity: .85; filter: contrast(1.15) brightness(1.05); }
+  40%  { opacity: .95; filter: contrast(.9)   brightness(.98); }
+  60%  { opacity: .8;  filter: contrast(1.2)  brightness(1.08); }
+  80%  { opacity: .92; filter: contrast(.95)  brightness(1); }
+  100% { opacity: 1;   filter: contrast(1)    brightness(1); }
 }
 
 /* Flow plan */
