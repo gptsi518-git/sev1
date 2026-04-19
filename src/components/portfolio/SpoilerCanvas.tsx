@@ -16,8 +16,8 @@ export default function SpoilerCanvas() {
     let raf = 0;
     let width = 0;
     let height = 0;
-    let particles: { x: number; y: number; vx: number; vy: number; life: number; max: number }[] = [];
-    const DENSITY = 0.08; // particles per px²  (≈ matches Telegram)
+    let particles: { x: number; y: number; vx: number; vy: number; life: number; max: number; size: number }[] = [];
+    const DENSITY = 0.25; // particles per px² — denser
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -28,19 +28,20 @@ export default function SpoilerCanvas() {
       canvas.height = Math.max(1, Math.floor(height * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const target = Math.min(900, Math.floor(width * height * DENSITY));
+      const target = Math.min(2500, Math.floor(width * height * DENSITY));
       particles = new Array(target).fill(0).map(() => spawn(true));
     };
 
     const spawn = (initial = false) => {
-      const max = 30 + Math.random() * 50;
+      const max = 25 + Math.random() * 40;
       return {
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
         life: initial ? Math.random() * max : 0,
         max,
+        size: Math.random() < 0.3 ? 2.2 : 1.6,
       };
     };
 
@@ -59,8 +60,8 @@ export default function SpoilerCanvas() {
         // fade in/out triangle envelope
         const t = p.life / p.max;
         const alpha = t < 0.5 ? t * 2 : (1 - t) * 2;
-        ctx.globalAlpha = alpha * 0.95;
-        ctx.fillRect(p.x, p.y, 1.2, 1.2);
+        ctx.globalAlpha = Math.min(1, alpha * 1.3);
+        ctx.fillRect(p.x, p.y, p.size, p.size);
       }
       ctx.globalAlpha = 1;
       raf = requestAnimationFrame(tick);
