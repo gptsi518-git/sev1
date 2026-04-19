@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import type { GalleryItem } from "./Lightbox";
+import SpoilerCanvas from "./SpoilerCanvas";
 
 interface TasksSectionProps {
   onOpenLb: (caption: string, imageSrc?: string, gallery?: GalleryItem[], index?: number) => void;
