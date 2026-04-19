@@ -165,25 +165,35 @@ img { display: block; max-width: 100%; }
   display: flex; align-items: center; justify-content: center;
   cursor: help;
 }
-.flow-role .spoiler::before {
+.flow-role .spoiler::before,
+.flow-role .spoiler .spoiler-layer {
   content: "";
   position: absolute; inset: -20px;
-  background-image:
-    radial-gradient(circle at 10% 20%, #fff 0.6px, transparent 1.2px),
-    radial-gradient(circle at 30% 70%, #fff 0.5px, transparent 1px),
-    radial-gradient(circle at 55% 35%, #fff 0.7px, transparent 1.3px),
-    radial-gradient(circle at 75% 80%, #fff 0.5px, transparent 1px),
-    radial-gradient(circle at 85% 15%, #fff 0.6px, transparent 1.1px),
-    radial-gradient(circle at 20% 90%, #fff 0.5px, transparent 1px),
-    radial-gradient(circle at 65% 60%, #fff 0.6px, transparent 1.1px),
-    radial-gradient(circle at 45% 10%, #fff 0.5px, transparent 1px);
-  background-size: 90px 90px, 70px 70px, 110px 110px, 80px 80px, 100px 100px, 75px 75px, 95px 95px, 85px 85px;
-  animation: spoiler-twinkle 3s ease-in-out infinite;
   pointer-events: none;
+}
+.flow-role .spoiler::before {
+  background-image:
+    radial-gradient(circle at 10% 20%, #fff 0.7px, transparent 1.4px),
+    radial-gradient(circle at 55% 35%, #fff 0.8px, transparent 1.6px),
+    radial-gradient(circle at 85% 15%, #fff 0.7px, transparent 1.4px),
+    radial-gradient(circle at 65% 60%, #fff 0.7px, transparent 1.3px),
+    radial-gradient(circle at 45% 10%, #fff 0.6px, transparent 1.2px);
+  background-size: 90px 90px, 110px 110px, 100px 100px, 95px 95px, 85px 85px;
+  animation: spoiler-twinkle-a 1.4s ease-in-out infinite;
+}
+.flow-role .spoiler-layer {
+  background-image:
+    radial-gradient(circle at 30% 70%, #fff 0.7px, transparent 1.4px),
+    radial-gradient(circle at 75% 80%, #fff 0.7px, transparent 1.4px),
+    radial-gradient(circle at 20% 90%, #fff 0.6px, transparent 1.2px),
+    radial-gradient(circle at 90% 50%, #fff 0.7px, transparent 1.3px),
+    radial-gradient(circle at 5% 55%, #fff 0.6px, transparent 1.2px);
+  background-size: 70px 70px, 80px 80px, 75px 75px, 105px 105px, 90px 90px;
+  animation: spoiler-twinkle-b 1.4s ease-in-out infinite;
 }
 .flow-role .spoiler::after {
   content: "Нажмите на запрос ↑";
-  position: relative;
+  position: relative; z-index: 1;
   font-family: 'Onest', sans-serif;
   font-size: 12px; font-weight: 500; color: #555;
   letter-spacing: .02em;
@@ -192,10 +202,15 @@ img { display: block; max-width: 100%; }
   backdrop-filter: blur(2px);
 }
 .flow-role.revealed .spoiler { opacity: 0; pointer-events: none; animation: none; }
-.flow-role.revealed .spoiler::before { animation: none; }
-@keyframes spoiler-twinkle {
-  0%, 100% { opacity: .9; }
-  50%      { opacity: .5; }
+.flow-role.revealed .spoiler::before,
+.flow-role.revealed .spoiler-layer { animation: none; }
+@keyframes spoiler-twinkle-a {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .15; }
+}
+@keyframes spoiler-twinkle-b {
+  0%, 100% { opacity: .15; }
+  50%      { opacity: 1; }
 }
 
 /* Flow plan */
