@@ -186,7 +186,7 @@ export default function TasksSection({ onOpenLb, onOpenDocLb }: TasksSectionProp
               className={`flow-role${revealedRoles.includes(r.id) ? " revealed" : ""}`}
               style={{ borderColor: r.color }}
             >
-              <div className="spoiler" />
+              <div className="spoiler"><span className="spoiler-layer" /></div>
               <div className="fr-icon" style={{ borderColor: r.color, color: r.color }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">{r.icon}</svg>
               </div>
