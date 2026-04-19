@@ -158,56 +158,28 @@ img { display: block; max-width: 100%; }
 .flow-role:not(.revealed) p { filter: blur(6px) grayscale(1); }
 .flow-role .spoiler {
   position: absolute; inset: 0; z-index: 2; border-radius: 11px; overflow: hidden;
-  transition: opacity .6s ease;
-  background-color: rgba(230, 230, 235, 0.7);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  transition: opacity .5s ease;
+  background-color: rgba(220, 220, 225, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   display: flex; align-items: center; justify-content: center;
   cursor: help;
 }
-.flow-role .spoiler::before,
-.flow-role .spoiler .spoiler-layer {
-  content: "";
-  position: absolute; inset: -10px;
+.spoiler-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
   pointer-events: none;
-  background-repeat: repeat;
-}
-.flow-role .spoiler::before {
-  background-image:
-    radial-gradient(circle, #fff 1.4px, transparent 1.8px),
-    radial-gradient(circle, #fff 1px, transparent 1.4px);
-  background-size: 14px 14px, 22px 22px;
-  background-position: 0 0, 7px 11px;
-  animation: spoiler-blink-a 0.9s steps(2, end) infinite;
-}
-.flow-role .spoiler .spoiler-layer {
-  background-image:
-    radial-gradient(circle, #fff 1.3px, transparent 1.7px),
-    radial-gradient(circle, #fff 1px, transparent 1.4px);
-  background-size: 16px 16px, 20px 20px;
-  background-position: 4px 6px, 11px 3px;
-  animation: spoiler-blink-b 0.9s steps(2, end) infinite;
+  display: block;
 }
 .flow-role .spoiler::after {
   content: "Нажмите на запрос ↑";
   position: relative; z-index: 1;
   font-family: 'Onest', sans-serif;
-  font-size: 12px; font-weight: 500; color: #555;
+  font-size: 12px; font-weight: 500; color: #444;
   letter-spacing: .02em;
   padding: 6px 10px; border-radius: 6px;
   background: rgba(255,255,255,.85);
 }
-.flow-role.revealed .spoiler { opacity: 0; pointer-events: none; animation: none; }
-.flow-role.revealed .spoiler::before,
-.flow-role.revealed .spoiler-layer { animation: none; }
-@keyframes spoiler-blink-a {
-  0%, 49.9% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-@keyframes spoiler-blink-b {
-  0%, 49.9% { opacity: 0; }
-  50%, 100% { opacity: 1; }
-}
+.flow-role.revealed .spoiler { opacity: 0; pointer-events: none; }
 
 /* Flow plan */
 .flow-plan { border-radius: 16px; background: var(--p-white); display: none; overflow: hidden; padding: 0; }
