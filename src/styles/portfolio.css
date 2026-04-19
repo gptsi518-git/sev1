@@ -159,12 +159,12 @@ img { display: block; max-width: 100%; }
 .flow-role .spoiler {
   position: absolute; inset: 0; z-index: 2; border-radius: 11px; overflow: hidden;
   transition: opacity .6s ease;
-  background-color: #2a2a2a;
+  background-color: #3a3a3a;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -0.2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' seed='12' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n2)'/%3E%3C/svg%3E");
-  background-size: 240px 240px, 200px 200px;
-  animation: spoiler-drift 1.6s steps(8) infinite;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 -0.4'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='2' seed='12' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23n2)'/%3E%3C/svg%3E");
+  background-size: 320px 320px, 280px 280px;
+  animation: spoiler-drift 6s linear infinite;
   display: flex; align-items: center; justify-content: center;
   cursor: help;
 }
@@ -181,9 +181,9 @@ img { display: block; max-width: 100%; }
 .flow-role.revealed .spoiler { opacity: 0; pointer-events: none; animation: none; }
 @keyframes spoiler-drift {
   0%   { background-position: 0 0, 0 0; }
-  25%  { background-position: -60px 30px, 40px -20px; }
-  50%  { background-position: 30px -40px, -30px 50px; }
-  75%  { background-position: -20px 60px, 60px 20px; }
+  25%  { background-position: -80px 40px, 50px -30px; }
+  50%  { background-position: 40px -60px, -40px 70px; }
+  75%  { background-position: -30px 80px, 80px 30px; }
   100% { background-position: 0 0, 0 0; }
 }
 
