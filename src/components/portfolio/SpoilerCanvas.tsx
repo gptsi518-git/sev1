@@ -17,7 +17,7 @@ export default function SpoilerCanvas() {
     let width = 0;
     let height = 0;
     let particles: { x: number; y: number; vx: number; vy: number; life: number; max: number; size: number }[] = [];
-    const DENSITY = 0.25; // particles per px² — denser
+    const DENSITY = 0.15; // particles per px²
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -28,17 +28,17 @@ export default function SpoilerCanvas() {
       canvas.height = Math.max(1, Math.floor(height * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const target = Math.min(2500, Math.floor(width * height * DENSITY));
+      const target = Math.min(1600, Math.floor(width * height * DENSITY));
       particles = new Array(target).fill(0).map(() => spawn(true));
     };
 
     const spawn = (initial = false) => {
-      const max = 25 + Math.random() * 40;
+      const max = 45 + Math.random() * 60;
       return {
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
         life: initial ? Math.random() * max : 0,
         max,
         size: Math.random() < 0.3 ? 2.2 : 1.6,
