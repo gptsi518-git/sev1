@@ -47,7 +47,7 @@ export default function SpoilerCanvas() {
 
     const tick = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = "#ffffff";
+      ctx.fillStyle = "#666666";
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         p.life += 1;
