@@ -300,7 +300,6 @@ export default function TasksSection({ onOpenLb, onOpenDocLb }: TasksSectionProp
                   const raspisanieGallery: GalleryItem[] = [
                     { caption: "Расписание — общий вид", imageSrc: "/images/raspisanie-calendar.png" },
                     { caption: "Расписание — по типам событий", imageSrc: "/images/raspisanie-tipy.png" },
-                    { caption: "Расписание — админ-панель" },
                   ];
                   return (
                     <div style={{ display: "flex", gap: 6 }}>
