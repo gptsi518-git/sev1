@@ -41,7 +41,7 @@ export default function SpoilerCanvas() {
         vy: (Math.random() - 0.5) * 0.35,
         life: initial ? Math.random() * max : 0,
         max,
-        size: Math.random() < 0.3 ? 2.2 : 1.6,
+        size: Math.random() < 0.3 ? 1.4 : 1,
       };
     };
 
