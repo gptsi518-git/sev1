@@ -159,7 +159,7 @@ img { display: block; max-width: 100%; }
 .flow-role .spoiler {
   position: absolute; inset: 0; z-index: 2; border-radius: 11px; overflow: hidden;
   transition: opacity .5s ease;
-  background-color: transparent;
+  background-color: var(--p-white);
   display: flex; align-items: center; justify-content: center;
   cursor: help;
 }
