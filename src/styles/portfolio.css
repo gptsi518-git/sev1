@@ -159,7 +159,7 @@ img { display: block; max-width: 100%; }
 .flow-role .spoiler {
   position: absolute; inset: 0; z-index: 2; border-radius: 11px; overflow: hidden;
   transition: opacity .5s ease;
-  background-color: rgba(40, 44, 52, 0.78);
+  background-color: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   display: flex; align-items: center; justify-content: center;
@@ -174,10 +174,10 @@ img { display: block; max-width: 100%; }
   content: "Нажмите на запрос ↑";
   position: relative; z-index: 1;
   font-family: 'Onest', sans-serif;
-  font-size: 12px; font-weight: 500; color: #fff;
+  font-size: 12px; font-weight: 500; color: #333;
   letter-spacing: .02em;
   padding: 6px 10px; border-radius: 6px;
-  background: rgba(0,0,0,.45);
+  background: rgba(255,255,255,.7);
 }
 .flow-role.revealed .spoiler { opacity: 0; pointer-events: none; }
 
