@@ -1,3 +1,5 @@
+import elenaPhoto from "@/assets/elena.jpg";
+
 export default function HeroSection() {
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="hero-photo">
-            <div className="hero-photo-placeholder">Фото Елены</div>
+            <img src={elenaPhoto} alt="Елена Сидоренко" className="hero-photo-img" />
             <div className="float-card fc2"><span>−35%</span>время разработки с ИИ</div>
           </div>
         </div>
