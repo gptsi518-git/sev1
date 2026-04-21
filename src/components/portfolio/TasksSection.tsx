@@ -227,8 +227,6 @@ export default function TasksSection({ onOpenLb, onOpenDocLb }: TasksSectionProp
             {(() => {
               const gameGallery: GalleryItem[] = [
                 { caption: "Скрин игры — главный экран", imageSrc: "/images/game-main-screen.png" },
-                { caption: "Скрин игры — карточка" },
-                { caption: "Скрин игры — процесс игры" },
               ];
               return gameGallery.map((item, i) => (
                 <div
