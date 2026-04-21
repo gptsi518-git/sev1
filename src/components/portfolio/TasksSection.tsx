@@ -215,15 +215,6 @@ export default function TasksSection({ onOpenLb, onOpenDocLb }: TasksSectionProp
             Карточная онлайн-игра «Где моя граница?» — 84+ карточки, 8 категорий, балльная система. Тема — трудные разговоры и личные границы. Разработана с ИИ на каждом шаге ADDIE за 6 дней вместо месяца работы.
           </div>
           <div style={{ display: "flex", gap: 10, marginTop: 16, flexWrap: "wrap" }}>
-            <div
-              onClick={onOpenDocLb}
-              style={{ width: 80, height: 100, borderRadius: 8, background: "var(--sand)", border: "1px solid var(--p-border)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all .2s", gap: 4 }}
-              onMouseOver={(e) => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.borderColor = "var(--p-green)"; }}
-              onMouseOut={(e) => { e.currentTarget.style.transform = ""; e.currentTarget.style.borderColor = "var(--p-border)"; }}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" strokeWidth="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><path d="M14 2v6h6" /><path d="M8 13h8M8 17h5" /></svg>
-              <span style={{ fontSize: 11, color: "var(--ink-muted)", fontWeight: 500 }}>Кейс</span>
-            </div>
             {(() => {
               const gameGallery: GalleryItem[] = [
                 { caption: "Скрин игры — главный экран", imageSrc: "/images/game-main-screen.png" },
