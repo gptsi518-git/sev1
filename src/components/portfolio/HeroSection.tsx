@@ -27,7 +27,6 @@ export default function HeroSection() {
           </div>
           <div className="hero-photo">
             <img src={elenaPhoto} alt="Елена Сидоренко" className="hero-photo-img" />
-            <div className="float-card fc2"><span>−35%</span>время разработки с ИИ</div>
           </div>
         </div>
         <div className="hero-line" />
