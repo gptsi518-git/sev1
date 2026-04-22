@@ -1,4 +1,4 @@
-import elenaPhoto from "@/assets/elena.jpg";
+import elenaPhoto from "@/assets/elena.png";
 
 export default function HeroSection() {
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
