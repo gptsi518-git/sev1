@@ -87,7 +87,7 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 8px 32px rgba(0,0,0,.1); font-size: 13px; font-weight: 600;
 }
 .float-card.fc1 { bottom: 24px; left: -20px; color: var(--p-blue); }
-.float-card.fc2 { top: 80%; right: -16px; color: var(--blue-deep); }
+.float-card.fc2 { top: 83%; right: -16px; color: var(--blue-deep); }
 .float-card span { display: block; font-size: 24px; font-family: var(--serif); line-height: 1; }
 
 /* Trust */
