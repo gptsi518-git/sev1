@@ -56,7 +56,7 @@ img { display: block; max-width: 100%; }
   position: relative; z-index: 1; display: grid;
   grid-template-columns: 1fr 380px; gap: 48px; align-items: center; padding-bottom: 40px;
 }
-.hero-curves { position: absolute; bottom: 0; left: 0; right: 0; height: 100%; pointer-events: none; overflow: hidden; }
+.hero-curves { position: absolute; bottom: 0; left: 0; right: 0; height: 100%; pointer-events: none; overflow: hidden; z-index: 2; }
 .hero-curves svg { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; }
 .hero-line { height: 3px; background: linear-gradient(90deg, #B4B2A9, var(--p-blue), var(--p-green)); }
 .hero-content { max-width: 600px; }
