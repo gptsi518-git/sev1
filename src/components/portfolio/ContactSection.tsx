@@ -23,7 +23,13 @@ export default function ContactSection() {
             <div className="c-item"><strong>Email</strong> <span>sev1coaching@gmail.com</span></div>
             <div className="c-item"><a href="#" className="card-link">Написать в LinkedIn →</a></div>
             <div style={{ marginTop: 24 }}>
-              <div style={{ width: 220, height: 220, borderRadius: "50%", background: "var(--blue-pale)", border: "2px solid var(--p-border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: "var(--ink-muted)" }}>Фото Елены</div>
+              <div style={{ width: 220, height: 220, borderRadius: "50%", border: "2px solid var(--p-border)", overflow: "hidden" }}>
+                <img
+                  src="/images/portrait-msu.jpg"
+                  alt="Фото Елены"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 22%", display: "block" }}
+                />
+              </div>
             </div>
           </div>
           <div className="form-box">
