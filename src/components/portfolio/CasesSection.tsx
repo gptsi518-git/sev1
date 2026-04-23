@@ -39,6 +39,7 @@ const gallery157: GalleryItem[] = [
 const gallery178: GalleryItem[] = [
   { caption: "Развивающая ОС", imageSrc: "/images/rzd-178-feedback.png" },
   { caption: "Грамота 2024", imageSrc: "/images/rzd-gramota-2024-2.jpg" },
+  { caption: "Благодарность РЖД", imageSrc: "/docs/rzd-blagodarnost-2022.png" },
 ];
 
 const galleryMkb: GalleryItem[] = [
@@ -96,9 +97,8 @@ export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps)
             </div>
             <div className="case-gallery">
               {gallery178.map((item, i) => (
-                <CaseThumb key={item.caption} label={item.caption} preview={item.imageSrc} onClick={() => onOpenLb(item.caption, item.imageSrc, gallery178, i)} />
+                <CaseThumb key={item.caption} label={item.caption} preview={item.imageSrc} green={i === gallery178.length - 1} onClick={() => onOpenLb(item.caption, item.imageSrc, gallery178, i)} />
               ))}
-              <CaseThumb label="Благодарность РЖД" preview="/docs/rzd-blagodarnost-2022.png" onClick={() => onOpenPdf("/docs/rzd-blagodarnost-2022.png")} green />
             </div>
           </div>
           <div className="case has-logo">
