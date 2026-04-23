@@ -7,7 +7,7 @@ const magData: { t: string; p: string; btn: string; bg: string; bdr: string; fmt
   { t: "Как сформулировать запрос на\u00a0обучение", p: "Шаблон на одну страницу. 10 вопросов, которые стоит задать себе до разговора с L&D. Перешлите заказчику — первая встреча пройдёт вдвое продуктивнее.", btn: "Скачать", bg: "#FAECE7", bdr: "#D85A30", fmt: "PDF", quote: "«Переслал заказчику перед встречей — впервые получил внятное ТЗ»", author: "T&D-менеджер, банк" },
 ];
 
-const magColors = ["var(--p-green)", "var(--p-blue)", "#534AB7", "#D85A30"];
+const magColors = ["var(--p-green)", "#E2563E", "#534AB7", "#D85A30"];
 
 export default function MagnetsSection() {
   const [activeTab, setActiveTab] = useState(0);
