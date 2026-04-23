@@ -48,7 +48,7 @@ const galleryMkb: GalleryItem[] = [
   { caption: "Анкеты обратной связи", imageSrc: "/images/mkb-feedback-forms.jpg" },
 ];
 
-export default function CasesSection({ onOpenLb, onOpenPdf }: CasesSectionProps) {
+export default function CasesSection({ onOpenLb }: CasesSectionProps) {
   return (
     <section className="cases" id="cases">
       <div className="arc" style={{ width: 320, height: 320, bottom: -100, right: -60, border: "1.5px solid #1F4E79", opacity: 0.14 }} />
