@@ -262,7 +262,7 @@ export default function TasksSection({ onOpenLb, onOpenDocLb }: TasksSectionProp
                   <b style={{ fontSize: 14, color: "var(--p-green)" }}>Тренажёр аналитического мышления</b>
                 </div>
                 <span style={{ fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.5, display: "block", marginBottom: 10 }}>Участник получает кейс с данными, анализирует, принимает решение, получает балл и рекомендации</span>
-                <a href="#" style={{ fontSize: 13, fontWeight: 600, color: "var(--p-green)", textDecoration: "none" }}>Попробовать тренажёр →</a>
+                <a href="https://sevtrain.lovable.app/" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, fontWeight: 600, color: "var(--p-green)", textDecoration: "none" }}>Попробовать тренажёр →</a>
               </div>
               <div style={{ padding: 14, borderRadius: 8, background: "var(--p-white)", border: "1px solid var(--p-border)" }}>
                 <b style={{ fontSize: 14, color: "var(--p-green)", display: "block", marginBottom: 6 }}>Реестр учебно-методических материалов</b>
