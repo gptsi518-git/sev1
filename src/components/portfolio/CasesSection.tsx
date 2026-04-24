@@ -79,7 +79,22 @@ export default function CasesSection({ onOpenLb }: CasesSectionProps) {
           <div className="case" style={{ borderLeft: "3px solid var(--p-green)" }}>
             <h3>ИИ-инструмент для L&D</h3>
             <p>Рабочие веб-приложения для L&D. От идеи до готового продукта — без привлечения разработчиков.</p>
-            <a href="https://sevtrain.lovable.app/" target="_blank" rel="noopener noreferrer" className="card-link" style={{ color: "var(--p-green)" }}>Попробовать тренажёр развития аналитического мышления →</a>
+            <a
+              href="https://sevtrain.lovable.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-link"
+              style={{
+                color: "var(--p-green)",
+                textDecoration: "underline",
+                cursor: "pointer",
+                display: "inline-block",
+                position: "relative",
+                zIndex: 2,
+              }}
+            >
+              Попробовать тренажёр развития аналитического мышления →
+            </a>
           </div>
         </div>
 
