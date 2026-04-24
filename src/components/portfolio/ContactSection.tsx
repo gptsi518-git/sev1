@@ -27,7 +27,7 @@ export default function ContactSection() {
                 <img
                   src="/images/portrait-msu.jpg"
                   alt="Фото Елены"
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 15%", transform: "scale(1.5)", transformOrigin: "center 30%", display: "block" }}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 5%", transform: "scale(1.5)", transformOrigin: "center 20%", display: "block" }}
                 />
               </div>
             </div>
