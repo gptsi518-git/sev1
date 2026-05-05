@@ -40,6 +40,10 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Елена Сидоренко — Learning Architect" },
+      { name: "twitter:description", content: "От стратегии обучения до коучинга руководителей — программы, которые меняют поведение и дают бизнес-результат." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4e778bda-55fd-4335-8871-85d297cc81f4/id-preview-909e2bec--54b0e1c2-2cf7-47f0-bace-c308af4c5a5f.lovable.app-1777982811399.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4e778bda-55fd-4335-8871-85d297cc81f4/id-preview-909e2bec--54b0e1c2-2cf7-47f0-bace-c308af4c5a5f.lovable.app-1777982811399.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
